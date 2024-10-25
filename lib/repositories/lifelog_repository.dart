@@ -6,6 +6,7 @@ import 'package:lifelog/models/user/user_model.dart';
 import 'package:lifelog/models/question/question_option_model.dart';
 import 'package:lifelog/utils/data_state.dart';
 import 'package:lifelog/utils/dio_provider.dart';
+import 'package:lifelog/models/diary/diary_entry_model.dart';
 
 class LifeLogRepository {
   static final LifeLogRepository _instance = LifeLogRepository._internal();
@@ -116,10 +117,11 @@ class LifeLogRepository {
   }
 
   // 일기 엔트리 추가
-  Future<DataState<void>> addDiaryEntry(Map<String, dynamic> entry) async {
+  Future<DataState<DiaryEntryModel>> addDiaryEntry(
+      Map<String, dynamic> entry) async {
     try {
-      await _lifeLogApi.addDiaryEntry(entry);
-      return const DataSuccess(null);
+      final newEntry = await _lifeLogApi.addDiaryEntry(entry);
+      return DataSuccess(newEntry);
     } on DioException catch (e) {
       debugPrint("$e");
       return DataFailed(e);
@@ -129,11 +131,11 @@ class LifeLogRepository {
   }
 
   // 일기 엔트리 수정
-  Future<DataState<void>> updateDiaryEntry(
-      String entryId, Map<String, dynamic> entry) async {
+  Future<DataState<DiaryEntryModel>> updateDiaryEntry(
+      int entryId, Map<String, dynamic> entry) async {
     try {
-      await _lifeLogApi.updateDiaryEntry(entryId, entry);
-      return const DataSuccess(null);
+      final updatedEntry = await _lifeLogApi.updateDiaryEntry(entryId, entry);
+      return DataSuccess(updatedEntry);
     } on DioException catch (e) {
       debugPrint("$e");
       return DataFailed(e);
@@ -143,7 +145,7 @@ class LifeLogRepository {
   }
 
   // 일기 엔트리 삭제
-  Future<DataState<void>> deleteDiaryEntry(String entryId) async {
+  Future<DataState<void>> deleteDiaryEntry(int entryId) async {
     try {
       await _lifeLogApi.deleteDiaryEntry(entryId);
       return const DataSuccess(null);

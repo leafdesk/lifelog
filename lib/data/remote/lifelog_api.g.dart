@@ -346,13 +346,13 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<void> addDiaryEntry(Map<String, dynamic> entry) async {
+  Future<DiaryEntryModel> addDiaryEntry(Map<String, dynamic> entry) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(entry);
-    final _options = _setStreamType<void>(Options(
+    final _options = _setStreamType<DiaryEntryModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -368,12 +368,20 @@ class _LifeLogApi implements LifeLogApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DiaryEntryModel _value;
+    try {
+      _value = DiaryEntryModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
-  Future<void> updateDiaryEntry(
-    String entryId,
+  Future<DiaryEntryModel> updateDiaryEntry(
+    int entryId,
     Map<String, dynamic> entry,
   ) async {
     final _extra = <String, dynamic>{};
@@ -381,7 +389,7 @@ class _LifeLogApi implements LifeLogApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(entry);
-    final _options = _setStreamType<void>(Options(
+    final _options = _setStreamType<DiaryEntryModel>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -397,11 +405,19 @@ class _LifeLogApi implements LifeLogApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DiaryEntryModel _value;
+    try {
+      _value = DiaryEntryModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
-  Future<void> deleteDiaryEntry(String entryId) async {
+  Future<void> deleteDiaryEntry(int entryId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

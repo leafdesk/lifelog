@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:lifelog/data/remote/lifelog_api.dart';
 import 'package:lifelog/models/question/question_model.dart';
 import 'package:lifelog/models/user/user_model.dart';
+import 'package:lifelog/models/question/question_option_model.dart';
 import 'package:lifelog/utils/data_state.dart';
 import 'package:lifelog/utils/dio_provider.dart';
 
@@ -185,6 +186,48 @@ class LifeLogRepository {
   Future<DataState<void>> deletePhoto(String photoId) async {
     try {
       await _lifeLogApi.deletePhoto(photoId);
+      return const DataSuccess(null);
+    } on DioException catch (e) {
+      debugPrint("$e");
+      return DataFailed(e);
+    } catch (e) {
+      return DataLocalFailed(e.toString());
+    }
+  }
+
+  // 질문 옵션 추가
+  Future<DataState<QuestionOptionModel>> addQuestionOption(
+      Map<String, dynamic> option) async {
+    try {
+      final newOption = await _lifeLogApi.addQuestionOption(option);
+      return DataSuccess(newOption);
+    } on DioException catch (e) {
+      debugPrint("$e");
+      return DataFailed(e);
+    } catch (e) {
+      return DataLocalFailed(e.toString());
+    }
+  }
+
+  // 질문 옵션 수정
+  Future<DataState<QuestionOptionModel>> updateQuestionOption(
+      int optionId, Map<String, dynamic> option) async {
+    try {
+      final updatedOption =
+          await _lifeLogApi.updateQuestionOption(optionId, option);
+      return DataSuccess(updatedOption);
+    } on DioException catch (e) {
+      debugPrint("$e");
+      return DataFailed(e);
+    } catch (e) {
+      return DataLocalFailed(e.toString());
+    }
+  }
+
+  // 질문 옵션 삭제
+  Future<DataState<void>> deleteQuestionOption(int optionId) async {
+    try {
+      await _lifeLogApi.deleteQuestionOption(optionId);
       return const DataSuccess(null);
     } on DioException catch (e) {
       debugPrint("$e");

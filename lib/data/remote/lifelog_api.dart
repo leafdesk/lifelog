@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:lifelog/models/user/user_model.dart';
+import 'package:lifelog/models/question/question_model.dart';
+import 'package:lifelog/models/question/question_option_model.dart'; // 추가된 import
 import 'package:retrofit/retrofit.dart';
-import 'package:lifelog/models/question/question_model.dart'; // 추가된 import
 
 part 'lifelog_api.g.dart';
 
@@ -43,16 +44,17 @@ abstract class LifeLogApi {
 
   // 사용자 지정을 위한 질문 옵션 추가
   @POST('/api/question-option')
-  Future<void> addQuestionOption(@Body() Map<String, dynamic> option);
+  Future<QuestionOptionModel> addQuestionOption(
+      @Body() Map<String, dynamic> option);
 
   // 사용자 지정을 위한 질문 옵션 수정
   @PUT('/api/question-option/{option_id}')
-  Future<void> updateQuestionOption(
-      @Path("option_id") String optionId, @Body() Map<String, dynamic> option);
+  Future<QuestionOptionModel> updateQuestionOption(
+      @Path("option_id") int optionId, @Body() Map<String, dynamic> option);
 
   // 사용자 지정을 한 질문 옵션 삭제
   @DELETE('/api/question-option/{option_id}')
-  Future<void> deleteQuestionOption(@Path("option_id") String optionId);
+  Future<void> deleteQuestionOption(@Path("option_id") int optionId);
 
   // 일기 추가
   @POST('/api/diary-entry')

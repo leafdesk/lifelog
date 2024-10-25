@@ -249,13 +249,14 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<void> addQuestionOption(Map<String, dynamic> option) async {
+  Future<QuestionOptionModel> addQuestionOption(
+      Map<String, dynamic> option) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(option);
-    final _options = _setStreamType<void>(Options(
+    final _options = _setStreamType<QuestionOptionModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -271,12 +272,20 @@ class _LifeLogApi implements LifeLogApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late QuestionOptionModel _value;
+    try {
+      _value = QuestionOptionModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
-  Future<void> updateQuestionOption(
-    String optionId,
+  Future<QuestionOptionModel> updateQuestionOption(
+    int optionId,
     Map<String, dynamic> option,
   ) async {
     final _extra = <String, dynamic>{};
@@ -284,7 +293,7 @@ class _LifeLogApi implements LifeLogApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(option);
-    final _options = _setStreamType<void>(Options(
+    final _options = _setStreamType<QuestionOptionModel>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -300,11 +309,19 @@ class _LifeLogApi implements LifeLogApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late QuestionOptionModel _value;
+    try {
+      _value = QuestionOptionModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
-  Future<void> deleteQuestionOption(String optionId) async {
+  Future<void> deleteQuestionOption(int optionId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

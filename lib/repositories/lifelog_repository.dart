@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:lifelog/data/remote/lifelog_api.dart';
 import 'package:lifelog/models/question/question_model.dart';
+import 'package:lifelog/models/user/user_model.dart';
 import 'package:lifelog/utils/data_state.dart';
 import 'package:lifelog/utils/dio_provider.dart';
 
@@ -33,7 +34,8 @@ class LifeLogRepository {
   Future<DataState<QuestionModel>> updateCustomQuestion(
       int questionId, Map<String, dynamic> question) async {
     try {
-      final updatedQuestion = await _lifeLogApi.updateCustomQuestion(questionId, question);
+      final updatedQuestion =
+          await _lifeLogApi.updateCustomQuestion(questionId, question);
       return DataSuccess(updatedQuestion);
     } on DioException catch (e) {
       debugPrint("$e");
@@ -57,10 +59,10 @@ class LifeLogRepository {
   }
 
   // 사용자 등록
-  Future<DataState<void>> registerUser(Map<String, dynamic> user) async {
+  Future<DataState<UserModel>> registerUser(Map<String, dynamic> user) async {
     try {
-      await _lifeLogApi.registerUser(user);
-      return const DataSuccess(null);
+      final newUser = await _lifeLogApi.registerUser(user);
+      return DataSuccess(newUser);
     } on DioException catch (e) {
       debugPrint("$e");
       return DataFailed(e);
@@ -70,11 +72,12 @@ class LifeLogRepository {
   }
 
   // 사용자 정보 수정
-  Future<DataState<void>> updateUser(
-      String userId, Map<String, dynamic> user) async {
+  Future<DataState<UserModel>> updateUser(
+      int userId, Map<String, dynamic> user) async {
     try {
-      await _lifeLogApi.updateUser(userId, user);
-      return const DataSuccess(null);
+      final updatedUser = await _lifeLogApi.updateUser(
+          userId.toString(), user); // Convert userId to String
+      return DataSuccess(updatedUser);
     } on DioException catch (e) {
       debugPrint("$e");
       return DataFailed(e);
@@ -84,10 +87,11 @@ class LifeLogRepository {
   }
 
   // 사용자 정보 조회
-  Future<DataState<Map<String, dynamic>>> getUserInfo(String userId) async {
+  Future<DataState<UserModel>> getUserInfo(int userId) async {
     try {
-      final response = await _lifeLogApi.getUserInfo(userId);
-      return DataSuccess(response);
+      final userInfo = await _lifeLogApi
+          .getUserInfo(userId.toString()); // Convert userId to String
+      return DataSuccess(userInfo);
     } on DioException catch (e) {
       debugPrint("$e");
       return DataFailed(e);
@@ -97,9 +101,10 @@ class LifeLogRepository {
   }
 
   // 사용자 삭제
-  Future<DataState<void>> deleteUser(String userId) async {
+  Future<DataState<void>> deleteUser(int userId) async {
     try {
-      await _lifeLogApi.deleteUser(userId);
+      await _lifeLogApi
+          .deleteUser(userId.toString()); // Convert userId to String
       return const DataSuccess(null);
     } on DioException catch (e) {
       debugPrint("$e");

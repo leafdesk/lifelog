@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lifelog/models/user/user_model.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:lifelog/models/question/question_model.dart'; // 추가된 import
 
@@ -10,12 +11,14 @@ abstract class LifeLogApi {
 
   // 사용자 지정을 위한 질문 추가
   @POST('/api/custom-question')
-  Future<QuestionModel> addCustomQuestion(@Body() Map<String, dynamic> question);
+  Future<QuestionModel> addCustomQuestion(
+      @Body() Map<String, dynamic> question);
 
   // 사용자 지정을 위한 질문 수정
   @PUT('/api/custom-question/{question_id}')
   Future<QuestionModel> updateCustomQuestion(
-      @Path("question_id") int questionId, @Body() Map<String, dynamic> question);
+      @Path("question_id") int questionId,
+      @Body() Map<String, dynamic> question);
 
   // 사용자 지정을 위한 질문 삭제
   @DELETE('/api/custom-question/{question_id}')
@@ -23,15 +26,16 @@ abstract class LifeLogApi {
 
   // 사용자 회원가입
   @POST('/api/users')
-  Future<void> registerUser(@Body() Map<String, dynamic> user);
+  Future<UserModel> registerUser(@Body() Map<String, dynamic> user);
 
   // 사용자 정보 수정
   @PUT('/api/users/{user_id}')
-  Future<void> updateUser(@Path("user_id") String userId, @Body() Map<String, dynamic> user);
+  Future<UserModel> updateUser(
+      @Path("user_id") String userId, @Body() Map<String, dynamic> user);
 
   // 사용자 정보 조회
   @GET('/api/users/{user_id}')
-  Future<Map<String, dynamic>> getUserInfo(@Path("user_id") String userId);
+  Future<UserModel> getUserInfo(@Path("user_id") String userId);
 
   // 사용자 탈퇴
   @DELETE('/api/users/{user_id}')
@@ -43,7 +47,8 @@ abstract class LifeLogApi {
 
   // 사용자 지정을 위한 질문 옵션 수정
   @PUT('/api/question-option/{option_id}')
-  Future<void> updateQuestionOption(@Path("option_id") String optionId, @Body() Map<String, dynamic> option);
+  Future<void> updateQuestionOption(
+      @Path("option_id") String optionId, @Body() Map<String, dynamic> option);
 
   // 사용자 지정을 한 질문 옵션 삭제
   @DELETE('/api/question-option/{option_id}')
@@ -55,7 +60,8 @@ abstract class LifeLogApi {
 
   // 일기 수정
   @PUT('/api/diary-entry/{entry_id}')
-  Future<void> updateDiaryEntry(@Path("entry_id") String entryId, @Body() Map<String, dynamic> entry);
+  Future<void> updateDiaryEntry(
+      @Path("entry_id") String entryId, @Body() Map<String, dynamic> entry);
 
   // 일기 삭제
   @DELETE('/api/diary-entry/{entry_id}')
@@ -67,7 +73,8 @@ abstract class LifeLogApi {
 
   // 사진 수정
   @PUT('/api/photo/{photo_id}')
-  Future<void> updatePhoto(@Path("photo_id") String photoId, @Body() Map<String, dynamic> photo);
+  Future<void> updatePhoto(
+      @Path("photo_id") String photoId, @Body() Map<String, dynamic> photo);
 
   // 사진 삭제
   @DELETE('/api/photo/{photo_id}')

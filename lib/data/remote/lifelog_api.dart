@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:lifelog/models/user/user_model.dart';
 import 'package:lifelog/models/question/question_model.dart';
-import 'package:lifelog/models/question/question_option_model.dart'; // 추가된 import
-import 'package:lifelog/models/diary/diary_entry_model.dart'; // 추가된 import
+import 'package:lifelog/models/question/question_option_model.dart';
+import 'package:lifelog/models/diary/diary_entry_model.dart';
+import 'package:lifelog/models/photo/photo_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'lifelog_api.g.dart';
@@ -72,14 +73,14 @@ abstract class LifeLogApi {
 
   // 사진 추가
   @POST('/api/photo')
-  Future<void> addPhoto(@Body() Map<String, dynamic> photo);
+  Future<PhotoModel> addPhoto(@Body() Map<String, dynamic> photo);
 
   // 사진 수정
   @PUT('/api/photo/{photo_id}')
-  Future<void> updatePhoto(
-      @Path("photo_id") String photoId, @Body() Map<String, dynamic> photo);
+  Future<PhotoModel> updatePhoto(
+      @Path("photo_id") int photoId, @Body() Map<String, dynamic> photo);
 
   // 사진 삭제
   @DELETE('/api/photo/{photo_id}')
-  Future<void> deletePhoto(@Path("photo_id") String photoId);
+  Future<void> deletePhoto(@Path("photo_id") int photoId);
 }

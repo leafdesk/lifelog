@@ -7,6 +7,7 @@ import 'package:lifelog/models/question/question_option_model.dart';
 import 'package:lifelog/utils/data_state.dart';
 import 'package:lifelog/utils/dio_provider.dart';
 import 'package:lifelog/models/diary/diary_entry_model.dart';
+import 'package:lifelog/models/photo/photo_model.dart';
 
 class LifeLogRepository {
   static final LifeLogRepository _instance = LifeLogRepository._internal();
@@ -158,10 +159,10 @@ class LifeLogRepository {
   }
 
   // 사진 추가
-  Future<DataState<void>> addPhoto(Map<String, dynamic> photo) async {
+  Future<DataState<PhotoModel>> addPhoto(Map<String, dynamic> photo) async {
     try {
-      await _lifeLogApi.addPhoto(photo);
-      return const DataSuccess(null);
+      final newPhoto = await _lifeLogApi.addPhoto(photo);
+      return DataSuccess(newPhoto);
     } on DioException catch (e) {
       debugPrint("$e");
       return DataFailed(e);
@@ -171,11 +172,11 @@ class LifeLogRepository {
   }
 
   // 사진 수정
-  Future<DataState<void>> updatePhoto(
-      String photoId, Map<String, dynamic> photo) async {
+  Future<DataState<PhotoModel>> updatePhoto(
+      int photoId, Map<String, dynamic> photo) async {
     try {
-      await _lifeLogApi.updatePhoto(photoId, photo);
-      return const DataSuccess(null);
+      final updatedPhoto = await _lifeLogApi.updatePhoto(photoId, photo);
+      return DataSuccess(updatedPhoto);
     } on DioException catch (e) {
       debugPrint("$e");
       return DataFailed(e);
@@ -185,7 +186,7 @@ class LifeLogRepository {
   }
 
   // 사진 삭제
-  Future<DataState<void>> deletePhoto(String photoId) async {
+  Future<DataState<void>> deletePhoto(int photoId) async {
     try {
       await _lifeLogApi.deletePhoto(photoId);
       return const DataSuccess(null);

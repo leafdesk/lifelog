@@ -12,7 +12,7 @@ abstract class TestApi {
   @GET('/v0/users')
   Future<TestUserResponse> getTestUsers();
 
-  // [테스트] ID로 유저 조회.
+  // [테스트] ID로 유저 조회. 
   @GET('/v0/users/{id}')
   Future<TestUserModel> getTestUserById(@Path("id") String id);
 

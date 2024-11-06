@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lifelog/constants.dart';
 import 'package:lifelog/models/user/user_model.dart';
 import 'package:lifelog/models/question/question_model.dart';
 import 'package:lifelog/models/question/question_option_model.dart';
@@ -8,7 +9,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'lifelog_api.g.dart';
 
-@RestApi(baseUrl: "https://your.api.base.url") // 실제 API의 기본 URL로 변경하세요.
+@RestApi(baseUrl: Constants.swaggerServerUrl)
 abstract class LifeLogApi {
   factory LifeLogApi(Dio dio, {String baseUrl}) = _LifeLogApi;
 

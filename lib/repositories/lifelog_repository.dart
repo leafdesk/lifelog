@@ -8,8 +8,10 @@ import 'package:lifelog/utils/data_state.dart';
 import 'package:lifelog/utils/dio_provider.dart';
 import 'package:lifelog/models/diary/diary_entry_model.dart';
 import 'package:lifelog/models/photo/photo_model.dart';
+import 'package:lifelog/utils/log_util.dart';
 
 class LifeLogRepository {
+  static String tag = "LifeLogRepository";
   static final LifeLogRepository _instance = LifeLogRepository._internal();
   late LifeLogApi _lifeLogApi;
 
@@ -91,9 +93,9 @@ class LifeLogRepository {
 
   // 사용자 정보 조회
   Future<DataState<UserModel>> getUserInfo(int userId) async {
+    LogUtil.d(tag, "getUserInfo. userId: $userId");
     try {
-      final userInfo = await _lifeLogApi
-          .getUserInfo(userId.toString()); // Convert userId to String
+      final userInfo = await _lifeLogApi.getUserInfo(userId.toString());
       return DataSuccess(userInfo);
     } on DioException catch (e) {
       debugPrint("$e");

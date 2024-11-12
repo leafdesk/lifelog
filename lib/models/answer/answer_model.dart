@@ -6,12 +6,12 @@ part 'answer_model.g.dart';
 @freezed
 class AnswerModel with _$AnswerModel {
   const factory AnswerModel({
-    required int answerId,
-    required int questionId,
-    required int userId,
-    required String answerText,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    int? answerId,
+    int? questionId,
+    int? userId,
+    String? answerText,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _AnswerModel;
 
   factory AnswerModel.fromJson(Map<String, dynamic> json) =>

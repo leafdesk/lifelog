@@ -7,13 +7,13 @@ part 'diary_entry_model.g.dart';
 @freezed
 class DiaryEntryModel with _$DiaryEntryModel {
   const factory DiaryEntryModel({
-    required int entryId,
-    required int userId,
-    required String date,
-    required String context,
-    required int emotionScore,
-    required String createdAt,
-    required String updatedAt,
+    int? entryId,
+    int? userId,
+    String? date,
+    String? context,
+    int? emotionScore,
+    String? createdAt,
+    String? updatedAt,
   }) = _DiaryEntryModel;
 
   factory DiaryEntryModel.fromJson(Map<String, dynamic> json) =>

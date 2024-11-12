@@ -20,13 +20,13 @@ DiaryEntryModel _$DiaryEntryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DiaryEntryModel {
-  int get entryId => throw _privateConstructorUsedError;
-  int get userId => throw _privateConstructorUsedError;
-  String get date => throw _privateConstructorUsedError;
-  String get context => throw _privateConstructorUsedError;
-  int get emotionScore => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
+  int? get entryId => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
+  String? get context => throw _privateConstructorUsedError;
+  int? get emotionScore => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,13 +41,13 @@ abstract class $DiaryEntryModelCopyWith<$Res> {
       _$DiaryEntryModelCopyWithImpl<$Res, DiaryEntryModel>;
   @useResult
   $Res call(
-      {int entryId,
-      int userId,
-      String date,
-      String context,
-      int emotionScore,
-      String createdAt,
-      String updatedAt});
+      {int? entryId,
+      int? userId,
+      String? date,
+      String? context,
+      int? emotionScore,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -63,43 +63,43 @@ class _$DiaryEntryModelCopyWithImpl<$Res, $Val extends DiaryEntryModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? entryId = null,
-    Object? userId = null,
-    Object? date = null,
-    Object? context = null,
-    Object? emotionScore = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? entryId = freezed,
+    Object? userId = freezed,
+    Object? date = freezed,
+    Object? context = freezed,
+    Object? emotionScore = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      entryId: null == entryId
+      entryId: freezed == entryId
           ? _value.entryId
           : entryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
+              as int?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
+              as int?,
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
-      context: null == context
+              as String?,
+      context: freezed == context
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
-              as String,
-      emotionScore: null == emotionScore
+              as String?,
+      emotionScore: freezed == emotionScore
           ? _value.emotionScore
           : emotionScore // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
+              as int?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -113,13 +113,13 @@ abstract class _$$DiaryEntryModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int entryId,
-      int userId,
-      String date,
-      String context,
-      int emotionScore,
-      String createdAt,
-      String updatedAt});
+      {int? entryId,
+      int? userId,
+      String? date,
+      String? context,
+      int? emotionScore,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -133,43 +133,43 @@ class __$$DiaryEntryModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? entryId = null,
-    Object? userId = null,
-    Object? date = null,
-    Object? context = null,
-    Object? emotionScore = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? entryId = freezed,
+    Object? userId = freezed,
+    Object? date = freezed,
+    Object? context = freezed,
+    Object? emotionScore = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$DiaryEntryModelImpl(
-      entryId: null == entryId
+      entryId: freezed == entryId
           ? _value.entryId
           : entryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
+              as int?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
+              as int?,
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
-      context: null == context
+              as String?,
+      context: freezed == context
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
-              as String,
-      emotionScore: null == emotionScore
+              as String?,
+      emotionScore: freezed == emotionScore
           ? _value.emotionScore
           : emotionScore // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
+              as int?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -178,31 +178,31 @@ class __$$DiaryEntryModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DiaryEntryModelImpl implements _DiaryEntryModel {
   const _$DiaryEntryModelImpl(
-      {required this.entryId,
-      required this.userId,
-      required this.date,
-      required this.context,
-      required this.emotionScore,
-      required this.createdAt,
-      required this.updatedAt});
+      {this.entryId,
+      this.userId,
+      this.date,
+      this.context,
+      this.emotionScore,
+      this.createdAt,
+      this.updatedAt});
 
   factory _$DiaryEntryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DiaryEntryModelImplFromJson(json);
 
   @override
-  final int entryId;
+  final int? entryId;
   @override
-  final int userId;
+  final int? userId;
   @override
-  final String date;
+  final String? date;
   @override
-  final String context;
+  final String? context;
   @override
-  final int emotionScore;
+  final int? emotionScore;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
 
   @override
   String toString() {
@@ -248,31 +248,31 @@ class _$DiaryEntryModelImpl implements _DiaryEntryModel {
 
 abstract class _DiaryEntryModel implements DiaryEntryModel {
   const factory _DiaryEntryModel(
-      {required final int entryId,
-      required final int userId,
-      required final String date,
-      required final String context,
-      required final int emotionScore,
-      required final String createdAt,
-      required final String updatedAt}) = _$DiaryEntryModelImpl;
+      {final int? entryId,
+      final int? userId,
+      final String? date,
+      final String? context,
+      final int? emotionScore,
+      final String? createdAt,
+      final String? updatedAt}) = _$DiaryEntryModelImpl;
 
   factory _DiaryEntryModel.fromJson(Map<String, dynamic> json) =
       _$DiaryEntryModelImpl.fromJson;
 
   @override
-  int get entryId;
+  int? get entryId;
   @override
-  int get userId;
+  int? get userId;
   @override
-  String get date;
+  String? get date;
   @override
-  String get context;
+  String? get context;
   @override
-  int get emotionScore;
+  int? get emotionScore;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$DiaryEntryModelImplCopyWith<_$DiaryEntryModelImpl> get copyWith =>

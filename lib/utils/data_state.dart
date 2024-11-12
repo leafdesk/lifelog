@@ -18,4 +18,9 @@ class DataFailed<T> extends DataState<T> {
 
 class DataLocalFailed<T> extends DataState<T> {
   const DataLocalFailed(String error) : super(localError: error);
+
+  @override
+  String toString() {
+    return 'DataLocalFailed: $localError'; // API 응답 실패 상세 로그 (오류 메시지)
+  }
 }

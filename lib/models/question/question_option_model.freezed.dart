@@ -20,9 +20,9 @@ QuestionOptionModel _$QuestionOptionModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$QuestionOptionModel {
-  int get optionId => throw _privateConstructorUsedError;
-  int get questionId => throw _privateConstructorUsedError;
-  String get optionText => throw _privateConstructorUsedError;
+  int? get optionId => throw _privateConstructorUsedError;
+  int? get questionId => throw _privateConstructorUsedError;
+  String? get optionText => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $QuestionOptionModelCopyWith<$Res> {
           QuestionOptionModel value, $Res Function(QuestionOptionModel) then) =
       _$QuestionOptionModelCopyWithImpl<$Res, QuestionOptionModel>;
   @useResult
-  $Res call({int optionId, int questionId, String optionText});
+  $Res call({int? optionId, int? questionId, String? optionText});
 }
 
 /// @nodoc
@@ -52,23 +52,23 @@ class _$QuestionOptionModelCopyWithImpl<$Res, $Val extends QuestionOptionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? optionId = null,
-    Object? questionId = null,
-    Object? optionText = null,
+    Object? optionId = freezed,
+    Object? questionId = freezed,
+    Object? optionText = freezed,
   }) {
     return _then(_value.copyWith(
-      optionId: null == optionId
+      optionId: freezed == optionId
           ? _value.optionId
           : optionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionId: null == questionId
+              as int?,
+      questionId: freezed == questionId
           ? _value.questionId
           : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      optionText: null == optionText
+              as int?,
+      optionText: freezed == optionText
           ? _value.optionText
           : optionText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$QuestionOptionModelImplCopyWith<$Res>
       __$$QuestionOptionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int optionId, int questionId, String optionText});
+  $Res call({int? optionId, int? questionId, String? optionText});
 }
 
 /// @nodoc
@@ -95,23 +95,23 @@ class __$$QuestionOptionModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? optionId = null,
-    Object? questionId = null,
-    Object? optionText = null,
+    Object? optionId = freezed,
+    Object? questionId = freezed,
+    Object? optionText = freezed,
   }) {
     return _then(_$QuestionOptionModelImpl(
-      optionId: null == optionId
+      optionId: freezed == optionId
           ? _value.optionId
           : optionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionId: null == questionId
+              as int?,
+      questionId: freezed == questionId
           ? _value.questionId
           : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      optionText: null == optionText
+              as int?,
+      optionText: freezed == optionText
           ? _value.optionText
           : optionText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -120,19 +120,17 @@ class __$$QuestionOptionModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QuestionOptionModelImpl implements _QuestionOptionModel {
   const _$QuestionOptionModelImpl(
-      {required this.optionId,
-      required this.questionId,
-      required this.optionText});
+      {this.optionId, this.questionId, this.optionText});
 
   factory _$QuestionOptionModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionOptionModelImplFromJson(json);
 
   @override
-  final int optionId;
+  final int? optionId;
   @override
-  final int questionId;
+  final int? questionId;
   @override
-  final String optionText;
+  final String? optionText;
 
   @override
   String toString() {
@@ -174,19 +172,19 @@ class _$QuestionOptionModelImpl implements _QuestionOptionModel {
 
 abstract class _QuestionOptionModel implements QuestionOptionModel {
   const factory _QuestionOptionModel(
-      {required final int optionId,
-      required final int questionId,
-      required final String optionText}) = _$QuestionOptionModelImpl;
+      {final int? optionId,
+      final int? questionId,
+      final String? optionText}) = _$QuestionOptionModelImpl;
 
   factory _QuestionOptionModel.fromJson(Map<String, dynamic> json) =
       _$QuestionOptionModelImpl.fromJson;
 
   @override
-  int get optionId;
+  int? get optionId;
   @override
-  int get questionId;
+  int? get questionId;
   @override
-  String get optionText;
+  String? get optionText;
   @override
   @JsonKey(ignore: true)
   _$$QuestionOptionModelImplCopyWith<_$QuestionOptionModelImpl> get copyWith =>

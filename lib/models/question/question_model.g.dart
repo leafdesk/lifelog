@@ -8,12 +8,16 @@ part of 'question_model.dart';
 
 _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
     _$QuestionModelImpl(
-      questionId: (json['questionId'] as num).toInt(),
-      questionText: json['questionText'] as String,
-      userId: (json['userId'] as num).toInt(),
-      questionType: json['questionType'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      questionId: (json['questionId'] as num?)?.toInt(),
+      questionText: json['questionText'] as String?,
+      userId: (json['userId'] as num?)?.toInt(),
+      questionType: json['questionType'] as String?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
@@ -22,6 +26,6 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
       'questionText': instance.questionText,
       'userId': instance.userId,
       'questionType': instance.questionType,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };

@@ -20,12 +20,12 @@ AnswerModel _$AnswerModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AnswerModel {
-  int get answerId => throw _privateConstructorUsedError;
-  int get questionId => throw _privateConstructorUsedError;
-  int get userId => throw _privateConstructorUsedError;
-  String get answerText => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  int? get answerId => throw _privateConstructorUsedError;
+  int? get questionId => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
+  String? get answerText => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +40,12 @@ abstract class $AnswerModelCopyWith<$Res> {
       _$AnswerModelCopyWithImpl<$Res, AnswerModel>;
   @useResult
   $Res call(
-      {int answerId,
-      int questionId,
-      int userId,
-      String answerText,
-      DateTime createdAt,
-      DateTime updatedAt});
+      {int? answerId,
+      int? questionId,
+      int? userId,
+      String? answerText,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -61,38 +61,38 @@ class _$AnswerModelCopyWithImpl<$Res, $Val extends AnswerModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? answerId = null,
-    Object? questionId = null,
-    Object? userId = null,
-    Object? answerText = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? answerId = freezed,
+    Object? questionId = freezed,
+    Object? userId = freezed,
+    Object? answerText = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      answerId: null == answerId
+      answerId: freezed == answerId
           ? _value.answerId
           : answerId // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionId: null == questionId
+              as int?,
+      questionId: freezed == questionId
           ? _value.questionId
           : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
+              as int?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      answerText: null == answerText
+              as int?,
+      answerText: freezed == answerText
           ? _value.answerText
           : answerText // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -106,12 +106,12 @@ abstract class _$$AnswerModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int answerId,
-      int questionId,
-      int userId,
-      String answerText,
-      DateTime createdAt,
-      DateTime updatedAt});
+      {int? answerId,
+      int? questionId,
+      int? userId,
+      String? answerText,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -125,38 +125,38 @@ class __$$AnswerModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? answerId = null,
-    Object? questionId = null,
-    Object? userId = null,
-    Object? answerText = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? answerId = freezed,
+    Object? questionId = freezed,
+    Object? userId = freezed,
+    Object? answerText = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$AnswerModelImpl(
-      answerId: null == answerId
+      answerId: freezed == answerId
           ? _value.answerId
           : answerId // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionId: null == questionId
+              as int?,
+      questionId: freezed == questionId
           ? _value.questionId
           : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
+              as int?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      answerText: null == answerText
+              as int?,
+      answerText: freezed == answerText
           ? _value.answerText
           : answerText // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -165,28 +165,28 @@ class __$$AnswerModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AnswerModelImpl implements _AnswerModel {
   const _$AnswerModelImpl(
-      {required this.answerId,
-      required this.questionId,
-      required this.userId,
-      required this.answerText,
-      required this.createdAt,
-      required this.updatedAt});
+      {this.answerId,
+      this.questionId,
+      this.userId,
+      this.answerText,
+      this.createdAt,
+      this.updatedAt});
 
   factory _$AnswerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AnswerModelImplFromJson(json);
 
   @override
-  final int answerId;
+  final int? answerId;
   @override
-  final int questionId;
+  final int? questionId;
   @override
-  final int userId;
+  final int? userId;
   @override
-  final String answerText;
+  final String? answerText;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
 
   @override
   String toString() {
@@ -232,28 +232,28 @@ class _$AnswerModelImpl implements _AnswerModel {
 
 abstract class _AnswerModel implements AnswerModel {
   const factory _AnswerModel(
-      {required final int answerId,
-      required final int questionId,
-      required final int userId,
-      required final String answerText,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$AnswerModelImpl;
+      {final int? answerId,
+      final int? questionId,
+      final int? userId,
+      final String? answerText,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$AnswerModelImpl;
 
   factory _AnswerModel.fromJson(Map<String, dynamic> json) =
       _$AnswerModelImpl.fromJson;
 
   @override
-  int get answerId;
+  int? get answerId;
   @override
-  int get questionId;
+  int? get questionId;
   @override
-  int get userId;
+  int? get userId;
   @override
-  String get answerText;
+  String? get answerText;
   @override
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
-  DateTime get updatedAt;
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$AnswerModelImplCopyWith<_$AnswerModelImpl> get copyWith =>

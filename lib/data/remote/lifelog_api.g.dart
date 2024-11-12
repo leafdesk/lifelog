@@ -14,7 +14,7 @@ class _LifeLogApi implements LifeLogApi {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://your.api.base.url';
+    baseUrl ??= 'https://virtserver.swaggerhub.com/LSG001008_1/lifelog/1.0.0';
   }
 
   final Dio _dio;
@@ -24,20 +24,19 @@ class _LifeLogApi implements LifeLogApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<QuestionModel> addCustomQuestion(Map<String, dynamic> question) async {
+  Future<UserModel> getUser(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(question);
-    final _options = _setStreamType<QuestionModel>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<UserModel>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/api/custom-question',
+          '/api/users/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -47,9 +46,9 @@ class _LifeLogApi implements LifeLogApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late QuestionModel _value;
+    late UserModel _value;
     try {
-      _value = QuestionModel.fromJson(_result.data!);
+      _value = UserModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -58,23 +57,23 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<QuestionModel> updateCustomQuestion(
-    int questionId,
-    Map<String, dynamic> question,
+  Future<UserModel> updateUser(
+    int id,
+    Map<String, dynamic> user,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(question);
-    final _options = _setStreamType<QuestionModel>(Options(
+    _data.addAll(user);
+    final _options = _setStreamType<UserModel>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/api/custom-question/${questionId}',
+          '/api/users/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -84,9 +83,9 @@ class _LifeLogApi implements LifeLogApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late QuestionModel _value;
+    late UserModel _value;
     try {
-      _value = QuestionModel.fromJson(_result.data!);
+      _value = UserModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -95,7 +94,7 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<void> deleteCustomQuestion(int questionId) async {
+  Future<void> deleteUser(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -107,7 +106,7 @@ class _LifeLogApi implements LifeLogApi {
     )
         .compose(
           _dio.options,
-          '/api/custom-question/${questionId}',
+          '/api/users/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -120,7 +119,7 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<UserModel> registerUser(Map<String, dynamic> user) async {
+  Future<UserModel> createUser(Map<String, dynamic> user) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -154,116 +153,19 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<UserModel> updateUser(
-    String userId,
-    Map<String, dynamic> user,
-  ) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(user);
-    final _options = _setStreamType<UserModel>(Options(
-      method: 'PUT',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/api/users/${userId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late UserModel _value;
-    try {
-      _value = UserModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<UserModel> getUserInfo(String userId) async {
+  Future<QuestionOptionModel> getQuestionOption(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<UserModel>(Options(
+    final _options = _setStreamType<QuestionOptionModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/api/users/${userId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late UserModel _value;
-    try {
-      _value = UserModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<void> deleteUser(String userId) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<void>(Options(
-      method: 'DELETE',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/api/users/${userId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    await _dio.fetch<void>(_options);
-  }
-
-  @override
-  Future<QuestionOptionModel> addQuestionOption(
-      Map<String, dynamic> option) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(option);
-    final _options = _setStreamType<QuestionOptionModel>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/api/question-option',
+          '/api/question-options/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -285,7 +187,7 @@ class _LifeLogApi implements LifeLogApi {
 
   @override
   Future<QuestionOptionModel> updateQuestionOption(
-    int optionId,
+    int id,
     Map<String, dynamic> option,
   ) async {
     final _extra = <String, dynamic>{};
@@ -300,7 +202,7 @@ class _LifeLogApi implements LifeLogApi {
     )
         .compose(
           _dio.options,
-          '/api/question-option/${optionId}',
+          '/api/question-options/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -321,7 +223,7 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<void> deleteQuestionOption(int optionId) async {
+  Future<void> deleteQuestionOption(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -333,7 +235,7 @@ class _LifeLogApi implements LifeLogApi {
     )
         .compose(
           _dio.options,
-          '/api/question-option/${optionId}',
+          '/api/question-options/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -346,20 +248,21 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<DiaryEntryModel> addDiaryEntry(Map<String, dynamic> entry) async {
+  Future<QuestionOptionModel> createQuestionOption(
+      Map<String, dynamic> option) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(entry);
-    final _options = _setStreamType<DiaryEntryModel>(Options(
+    _data.addAll(option);
+    final _options = _setStreamType<QuestionOptionModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/api/diary-entry',
+          '/api/question-options',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -369,9 +272,9 @@ class _LifeLogApi implements LifeLogApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late DiaryEntryModel _value;
+    late QuestionOptionModel _value;
     try {
-      _value = DiaryEntryModel.fromJson(_result.data!);
+      _value = QuestionOptionModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -380,23 +283,56 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<DiaryEntryModel> updateDiaryEntry(
-    int entryId,
-    Map<String, dynamic> entry,
+  Future<PhotoModel> getPhoto(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<PhotoModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/photo/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PhotoModel _value;
+    try {
+      _value = PhotoModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<PhotoModel> updatePhoto(
+    int id,
+    Map<String, dynamic> photo,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(entry);
-    final _options = _setStreamType<DiaryEntryModel>(Options(
+    _data.addAll(photo);
+    final _options = _setStreamType<PhotoModel>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/api/diary-entry/${entryId}',
+          '/api/photo/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -406,9 +342,9 @@ class _LifeLogApi implements LifeLogApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late DiaryEntryModel _value;
+    late PhotoModel _value;
     try {
-      _value = DiaryEntryModel.fromJson(_result.data!);
+      _value = PhotoModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -417,7 +353,7 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<void> deleteDiaryEntry(int entryId) async {
+  Future<void> deletePhoto(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -429,7 +365,7 @@ class _LifeLogApi implements LifeLogApi {
     )
         .compose(
           _dio.options,
-          '/api/diary-entry/${entryId}',
+          '/api/photo/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -442,7 +378,42 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<PhotoModel> addPhoto(Map<String, dynamic> photo) async {
+  Future<List<PhotoModel>> getAllPhotos() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<PhotoModel>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/photo',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<PhotoModel> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) => PhotoModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<PhotoModel> createPhoto(Map<String, dynamic> photo) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -476,23 +447,19 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<PhotoModel> updatePhoto(
-    int photoId,
-    Map<String, dynamic> photo,
-  ) async {
+  Future<DiaryEntryModel> getDiaryEntry(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(photo);
-    final _options = _setStreamType<PhotoModel>(Options(
-      method: 'PUT',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<DiaryEntryModel>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/api/photo/${photoId}',
+          '/api/diary-entry/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -502,9 +469,9 @@ class _LifeLogApi implements LifeLogApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PhotoModel _value;
+    late DiaryEntryModel _value;
     try {
-      _value = PhotoModel.fromJson(_result.data!);
+      _value = DiaryEntryModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -513,7 +480,44 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<void> deletePhoto(int photoId) async {
+  Future<DiaryEntryModel> updateDiaryEntry(
+    int id,
+    Map<String, dynamic> entry,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(entry);
+    final _options = _setStreamType<DiaryEntryModel>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/diary-entry/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DiaryEntryModel _value;
+    try {
+      _value = DiaryEntryModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<void> deleteDiaryEntry(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -525,7 +529,7 @@ class _LifeLogApi implements LifeLogApi {
     )
         .compose(
           _dio.options,
-          '/api/photo/${photoId}',
+          '/api/diary-entry/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -535,6 +539,335 @@ class _LifeLogApi implements LifeLogApi {
           baseUrl,
         )));
     await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<List<DiaryEntryModel>> getAllDiaryEntries() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<DiaryEntryModel>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/diary-entry',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<DiaryEntryModel> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) =>
+              DiaryEntryModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<DiaryEntryModel> createDiaryEntry(Map<String, dynamic> entry) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(entry);
+    final _options = _setStreamType<DiaryEntryModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/diary-entry',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DiaryEntryModel _value;
+    try {
+      _value = DiaryEntryModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<QuestionModel> getCustomQuestion(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<QuestionModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/custom-questions/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late QuestionModel _value;
+    try {
+      _value = QuestionModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<QuestionModel> updateCustomQuestion(
+    int id,
+    Map<String, dynamic> question,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(question);
+    final _options = _setStreamType<QuestionModel>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/custom-questions/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late QuestionModel _value;
+    try {
+      _value = QuestionModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<void> deleteCustomQuestion(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/custom-questions/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<QuestionModel> createCustomQuestion(
+      Map<String, dynamic> question) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(question);
+    final _options = _setStreamType<QuestionModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/custom-questions',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late QuestionModel _value;
+    try {
+      _value = QuestionModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<AnswerModel> getAnswer(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<AnswerModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/answers/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AnswerModel _value;
+    try {
+      _value = AnswerModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<AnswerModel> updateAnswer(
+    int id,
+    Map<String, dynamic> answer,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(answer);
+    final _options = _setStreamType<AnswerModel>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/answers/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AnswerModel _value;
+    try {
+      _value = AnswerModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<void> deleteAnswer(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/answers/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<AnswerModel> createAnswer(Map<String, dynamic> answer) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(answer);
+    final _options = _setStreamType<AnswerModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/answers',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AnswerModel _value;
+    try {
+      _value = AnswerModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

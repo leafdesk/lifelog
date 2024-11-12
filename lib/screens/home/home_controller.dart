@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:lifelog/models/user/user_model.dart';
-import 'package:lifelog/repositories/lifelog_repository.dart';
+import 'package:lifelog/repositories/_repository.dart';
 import 'package:lifelog/utils/data_state.dart';
 import 'package:flutter/material.dart';
 

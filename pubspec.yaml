@@ -22,6 +22,7 @@ dependencies:
   fl_chart: ^0.65.0
   logger: ^2.4.0
   mockito: ^5.4.4
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:

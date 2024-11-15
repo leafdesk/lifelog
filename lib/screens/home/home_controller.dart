@@ -1,23 +1,41 @@
 import 'package:get/get.dart';
 import 'package:lifelog/models/user/user_model.dart';
-import 'package:lifelog/repositories/_repository.dart';
+import 'package:lifelog/repositories/user_repository.dart';
 import 'package:lifelog/utils/data_state.dart';
 import 'package:flutter/material.dart';
+import 'package:lifelog/utils/log_util.dart';
 
 class HomeController extends GetxController {
+  static String tag = "HomeController";
   static HomeController get to => Get.find();
+  UserRepository userRepository = UserRepository();
 
   /// 숫자.
+  ///
+  ///
   RxInt number = 0.obs;
 
   /// 숫자 증가.
+  ///
+  ///
   void increaseNumber() {
+    LogUtil.d(tag, "increaseNumber.");
     number.value++;
   }
 
   /// 숫자 감소.
+  ///
+  ///
   void decreaseNumber() {
     number.value--;
+  }
+
+  /// API 테스트 수행.
+  ///
+  ///
+  void doApiTest() {
+    var user = userRepository.getUser(1);
+    LogUtil.d(tag, "doApiTest. user: $user");
   }
 }
 

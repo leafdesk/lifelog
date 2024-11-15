@@ -17,30 +17,51 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() {
-        return Center(child: numberControl(homeController: _homeController));
+        return Center(child: apiTestButton(homeController: _homeController));
       }),
     );
   }
 }
 
 /// 숫자 컨트롤 위젯.
+///
+///
 Widget numberControl({required HomeController homeController}) {
+  return Obx(() {
+    Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('숫자: ${homeController.number.value}'),
+        ElevatedButton(
+          onPressed: () {
+            homeController.increaseNumber();
+          },
+          child: const Text('+'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            homeController.decreaseNumber();
+          },
+          child: const Text('-'),
+        ),
+      ],
+    );
+  });
+}
+
+/// API 테스트 버튼.
+///
+///
+Widget apiTestButton({required HomeController homeController}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text('숫자: ${homeController.number.value}'),
       ElevatedButton(
         onPressed: () {
-          homeController.increaseNumber();
+          homeController.doApiTest();
         },
-        child: const Text('+'),
-      ),
-      ElevatedButton(
-        onPressed: () {
-          homeController.decreaseNumber();
-        },
-        child: const Text('-'),
-      ),
+        child: const Text('doApiTest'),
+      )
     ],
   );
 }

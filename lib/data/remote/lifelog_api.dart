@@ -1,86 +1,120 @@
 import 'package:dio/dio.dart';
+import 'package:lifelog/constants.dart';
 import 'package:lifelog/models/user/user_model.dart';
 import 'package:lifelog/models/question/question_model.dart';
 import 'package:lifelog/models/question/question_option_model.dart';
 import 'package:lifelog/models/diary/diary_entry_model.dart';
 import 'package:lifelog/models/photo/photo_model.dart';
+import 'package:lifelog/models/answer/answer_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'lifelog_api.g.dart';
 
-@RestApi(baseUrl: "https://your.api.base.url") // 실제 API의 기본 URL로 변경하세요.
+@RestApi(baseUrl: Constants.swaggerServerUrl)
 abstract class LifeLogApi {
   factory LifeLogApi(Dio dio, {String baseUrl}) = _LifeLogApi;
 
-  // 사용자 지정을 위한 질문 추가
-  @POST('/api/custom-question')
-  Future<QuestionModel> addCustomQuestion(
-      @Body() Map<String, dynamic> question);
+  /// User endpoints
+  ///
+  ///
+  @GET('/api/users/{id}')
+  Future<UserModel> getUser(@Path('id') int id);
 
-  // 사용자 지정을 위한 질문 수정
-  @PUT('/api/custom-question/{question_id}')
-  Future<QuestionModel> updateCustomQuestion(
-      @Path("question_id") int questionId,
-      @Body() Map<String, dynamic> question);
-
-  // 사용자 지정을 위한 질문 삭제
-  @DELETE('/api/custom-question/{question_id}')
-  Future<void> deleteCustomQuestion(@Path("question_id") int questionId);
-
-  // 사용자 회원가입
-  @POST('/api/users')
-  Future<UserModel> registerUser(@Body() Map<String, dynamic> user);
-
-  // 사용자 정보 수정
-  @PUT('/api/users/{user_id}')
+  @PUT('/api/users/{id}')
   Future<UserModel> updateUser(
-      @Path("user_id") String userId, @Body() Map<String, dynamic> user);
+      @Path('id') int id, @Body() Map<String, dynamic> user);
 
-  // 사용자 정보 조회
-  @GET('/api/users/{user_id}')
-  Future<UserModel> getUserInfo(@Path("user_id") String userId);
+  @DELETE('/api/users/{id}')
+  Future<void> deleteUser(@Path('id') int id);
 
-  // 사용자 탈퇴
-  @DELETE('/api/users/{user_id}')
-  Future<void> deleteUser(@Path("user_id") String userId);
+  @POST('/api/users')
+  Future<UserModel> createUser(@Body() Map<String, dynamic> user);
 
-  // 사용자 지정을 위한 질문 옵션 추가
-  @POST('/api/question-option')
-  Future<QuestionOptionModel> addQuestionOption(
+  /// Question Option endpoints
+  ///
+  ///
+  @GET('/api/question-options/{id}')
+  Future<QuestionOptionModel> getQuestionOption(@Path('id') int id);
+
+  @PUT('/api/question-options/{id}')
+  Future<QuestionOptionModel> updateQuestionOption(
+      @Path('id') int id, @Body() Map<String, dynamic> option);
+
+  @DELETE('/api/question-options/{id}')
+  Future<void> deleteQuestionOption(@Path('id') int id);
+
+  @POST('/api/question-options')
+  Future<QuestionOptionModel> createQuestionOption(
       @Body() Map<String, dynamic> option);
 
-  // 사용자 지정을 위한 질문 옵션 수정
-  @PUT('/api/question-option/{option_id}')
-  Future<QuestionOptionModel> updateQuestionOption(
-      @Path("option_id") int optionId, @Body() Map<String, dynamic> option);
+  /// Photo endpoints
+  ///
+  ///
+  @GET('/api/photo/{id}')
+  Future<PhotoModel> getPhoto(@Path('id') int id);
 
-  // 사용자 지정을 한 질문 옵션 삭제
-  @DELETE('/api/question-option/{option_id}')
-  Future<void> deleteQuestionOption(@Path("option_id") int optionId);
-
-  // 일기 추가
-  @POST('/api/diary-entry')
-  Future<DiaryEntryModel> addDiaryEntry(@Body() Map<String, dynamic> entry);
-
-  // 일기 수정
-  @PUT('/api/diary-entry/{entry_id}')
-  Future<DiaryEntryModel> updateDiaryEntry(
-      @Path("entry_id") int entryId, @Body() Map<String, dynamic> entry);
-
-  // 일기 삭제
-  @DELETE('/api/diary-entry/{entry_id}')
-  Future<void> deleteDiaryEntry(@Path("entry_id") int entryId);
-
-  // 사진 추가
-  @POST('/api/photo')
-  Future<PhotoModel> addPhoto(@Body() Map<String, dynamic> photo);
-
-  // 사진 수정
-  @PUT('/api/photo/{photo_id}')
+  @PUT('/api/photo/{id}')
   Future<PhotoModel> updatePhoto(
-      @Path("photo_id") int photoId, @Body() Map<String, dynamic> photo);
+      @Path('id') int id, @Body() Map<String, dynamic> photo);
 
-  // 사진 삭제
-  @DELETE('/api/photo/{photo_id}')
-  Future<void> deletePhoto(@Path("photo_id") int photoId);
+  @DELETE('/api/photo/{id}')
+  Future<void> deletePhoto(@Path('id') int id);
+
+  @GET('/api/photo')
+  Future<List<PhotoModel>> getAllPhotos();
+
+  @POST('/api/photo')
+  Future<PhotoModel> createPhoto(@Body() Map<String, dynamic> photo);
+
+  /// Diary Entry endpoints
+  ///
+  ///
+  @GET('/api/diary-entry/{id}')
+  Future<DiaryEntryModel> getDiaryEntry(@Path('id') int id);
+
+  @PUT('/api/diary-entry/{id}')
+  Future<DiaryEntryModel> updateDiaryEntry(
+      @Path('id') int id, @Body() Map<String, dynamic> entry);
+
+  @DELETE('/api/diary-entry/{id}')
+  Future<void> deleteDiaryEntry(@Path('id') int id);
+
+  @GET('/api/diary-entry')
+  Future<List<DiaryEntryModel>> getAllDiaryEntries();
+
+  @POST('/api/diary-entry')
+  Future<DiaryEntryModel> createDiaryEntry(@Body() Map<String, dynamic> entry);
+
+  /// Custom Question endpoints
+  ///
+  ///
+  @GET('/api/custom-questions/{id}')
+  Future<QuestionModel> getCustomQuestion(@Path('id') int id);
+
+  @PUT('/api/custom-questions/{id}')
+  Future<QuestionModel> updateCustomQuestion(
+      @Path('id') int id, @Body() Map<String, dynamic> question);
+
+  @DELETE('/api/custom-questions/{id}')
+  Future<void> deleteCustomQuestion(@Path('id') int id);
+
+  @POST('/api/custom-questions')
+  Future<QuestionModel> createCustomQuestion(
+      @Body() Map<String, dynamic> question);
+
+  /// Answer endpoints
+  ///
+  ///
+  @GET('/api/answers/{id}')
+  Future<AnswerModel> getAnswer(@Path('id') int id);
+
+  @PUT('/api/answers/{id}')
+  Future<AnswerModel> updateAnswer(
+      @Path('id') int id, @Body() Map<String, dynamic> answer);
+
+  @DELETE('/api/answers/{id}')
+  Future<void> deleteAnswer(@Path('id') int id);
+
+  @POST('/api/answers')
+  Future<AnswerModel> createAnswer(@Body() Map<String, dynamic> answer);
 }

@@ -20,11 +20,11 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  int get userId => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,11 +38,11 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {int userId,
-      String username,
-      String email,
-      String createdAt,
-      String updatedAt});
+      {int? userId,
+      String? username,
+      String? email,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -58,33 +58,33 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? username = null,
-    Object? email = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? userId = freezed,
+    Object? username = freezed,
+    Object? email = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      username: null == username
+              as int?,
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -98,11 +98,11 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int userId,
-      String username,
-      String email,
-      String createdAt,
-      String updatedAt});
+      {int? userId,
+      String? username,
+      String? email,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -116,33 +116,33 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? username = null,
-    Object? email = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? userId = freezed,
+    Object? username = freezed,
+    Object? email = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$UserModelImpl(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      username: null == username
+              as int?,
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -151,25 +151,21 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
-      {required this.userId,
-      required this.username,
-      required this.email,
-      required this.createdAt,
-      required this.updatedAt});
+      {this.userId, this.username, this.email, this.createdAt, this.updatedAt});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  final int userId;
+  final int? userId;
   @override
-  final String username;
+  final String? username;
   @override
-  final String email;
+  final String? email;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
 
   @override
   String toString() {
@@ -212,25 +208,25 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final int userId,
-      required final String username,
-      required final String email,
-      required final String createdAt,
-      required final String updatedAt}) = _$UserModelImpl;
+      {final int? userId,
+      final String? username,
+      final String? email,
+      final String? createdAt,
+      final String? updatedAt}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
-  int get userId;
+  int? get userId;
   @override
-  String get username;
+  String? get username;
   @override
-  String get email;
+  String? get email;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

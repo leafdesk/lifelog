@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lifelog/app_controller.dart';
-import 'package:lifelog/screens/home_screen.dart';
+import 'package:lifelog/screens/home/home_screen.dart';
 import 'package:lifelog/screens/settings_screen.dart';
 import 'package:lifelog/screens/statistics_screen.dart';
 
@@ -29,7 +29,7 @@ class MainPage extends StatelessWidget {
 
   // 각 페이지를 담을 리스트
   static final List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
+    HomeScreen(),
     const StatisticsScreen(),
     const SettingsScreen(),
   ];

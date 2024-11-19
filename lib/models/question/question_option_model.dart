@@ -7,9 +7,9 @@ part 'question_option_model.g.dart';
 @freezed
 class QuestionOptionModel with _$QuestionOptionModel {
   const factory QuestionOptionModel({
-    required int optionId,
-    required int questionId,
-    required String optionText,
+    int? optionId,
+    int? questionId,
+    String? optionText,
   }) = _QuestionOptionModel;
 
   factory QuestionOptionModel.fromJson(Map<String, dynamic> json) =>

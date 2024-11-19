@@ -7,11 +7,11 @@ part 'photo_model.g.dart';
 @freezed
 class PhotoModel with _$PhotoModel {
   const factory PhotoModel({
-    required int photoId,
-    required int userId,
-    required String url,
-    required String createdAt,
-    required String updatedAt,
+    int? photoId,
+    int? userId,
+    String? url,
+    String? createdAt,
+    String? updatedAt,
   }) = _PhotoModel;
 
   factory PhotoModel.fromJson(Map<String, dynamic> json) =>

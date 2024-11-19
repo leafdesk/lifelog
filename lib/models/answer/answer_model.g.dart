@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'question_model.dart';
+part of 'answer_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
-    _$QuestionModelImpl(
+_$AnswerModelImpl _$$AnswerModelImplFromJson(Map<String, dynamic> json) =>
+    _$AnswerModelImpl(
+      answerId: (json['answerId'] as num?)?.toInt(),
       questionId: (json['questionId'] as num?)?.toInt(),
-      questionText: json['questionText'] as String?,
       userId: (json['userId'] as num?)?.toInt(),
-      questionType: json['questionType'] as String?,
+      answerText: json['answerText'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -20,12 +20,12 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
+Map<String, dynamic> _$$AnswerModelImplToJson(_$AnswerModelImpl instance) =>
     <String, dynamic>{
+      'answerId': instance.answerId,
       'questionId': instance.questionId,
-      'questionText': instance.questionText,
       'userId': instance.userId,
-      'questionType': instance.questionType,
+      'answerText': instance.answerText,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

@@ -20,11 +20,11 @@ PhotoModel _$PhotoModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PhotoModel {
-  int get photoId => throw _privateConstructorUsedError;
-  int get userId => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
+  int? get photoId => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +39,11 @@ abstract class $PhotoModelCopyWith<$Res> {
       _$PhotoModelCopyWithImpl<$Res, PhotoModel>;
   @useResult
   $Res call(
-      {int photoId,
-      int userId,
-      String url,
-      String createdAt,
-      String updatedAt});
+      {int? photoId,
+      int? userId,
+      String? url,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -59,33 +59,33 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? photoId = null,
-    Object? userId = null,
-    Object? url = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? photoId = freezed,
+    Object? userId = freezed,
+    Object? url = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      photoId: null == photoId
+      photoId: freezed == photoId
           ? _value.photoId
           : photoId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
+              as int?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      url: null == url
+              as int?,
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -99,11 +99,11 @@ abstract class _$$PhotoModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int photoId,
-      int userId,
-      String url,
-      String createdAt,
-      String updatedAt});
+      {int? photoId,
+      int? userId,
+      String? url,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -117,33 +117,33 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? photoId = null,
-    Object? userId = null,
-    Object? url = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? photoId = freezed,
+    Object? userId = freezed,
+    Object? url = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$PhotoModelImpl(
-      photoId: null == photoId
+      photoId: freezed == photoId
           ? _value.photoId
           : photoId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
+              as int?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      url: null == url
+              as int?,
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -152,25 +152,21 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PhotoModelImpl implements _PhotoModel {
   const _$PhotoModelImpl(
-      {required this.photoId,
-      required this.userId,
-      required this.url,
-      required this.createdAt,
-      required this.updatedAt});
+      {this.photoId, this.userId, this.url, this.createdAt, this.updatedAt});
 
   factory _$PhotoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PhotoModelImplFromJson(json);
 
   @override
-  final int photoId;
+  final int? photoId;
   @override
-  final int userId;
+  final int? userId;
   @override
-  final String url;
+  final String? url;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
 
   @override
   String toString() {
@@ -212,25 +208,25 @@ class _$PhotoModelImpl implements _PhotoModel {
 
 abstract class _PhotoModel implements PhotoModel {
   const factory _PhotoModel(
-      {required final int photoId,
-      required final int userId,
-      required final String url,
-      required final String createdAt,
-      required final String updatedAt}) = _$PhotoModelImpl;
+      {final int? photoId,
+      final int? userId,
+      final String? url,
+      final String? createdAt,
+      final String? updatedAt}) = _$PhotoModelImpl;
 
   factory _PhotoModel.fromJson(Map<String, dynamic> json) =
       _$PhotoModelImpl.fromJson;
 
   @override
-  int get photoId;
+  int? get photoId;
   @override
-  int get userId;
+  int? get userId;
   @override
-  String get url;
+  String? get url;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$PhotoModelImplCopyWith<_$PhotoModelImpl> get copyWith =>

@@ -9,13 +9,13 @@ part of 'diary_entry_model.dart';
 _$DiaryEntryModelImpl _$$DiaryEntryModelImplFromJson(
         Map<String, dynamic> json) =>
     _$DiaryEntryModelImpl(
-      entryId: (json['entryId'] as num).toInt(),
-      userId: (json['userId'] as num).toInt(),
-      date: json['date'] as String,
-      context: json['context'] as String,
-      emotionScore: (json['emotionScore'] as num).toInt(),
-      createdAt: json['createdAt'] as String,
-      updatedAt: json['updatedAt'] as String,
+      entryId: (json['entryId'] as num?)?.toInt(),
+      userId: (json['userId'] as num?)?.toInt(),
+      date: json['date'] as String?,
+      context: json['context'] as String?,
+      emotionScore: (json['emotionScore'] as num?)?.toInt(),
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
     );
 
 Map<String, dynamic> _$$DiaryEntryModelImplToJson(

@@ -9,9 +9,9 @@ part of 'question_option_model.dart';
 _$QuestionOptionModelImpl _$$QuestionOptionModelImplFromJson(
         Map<String, dynamic> json) =>
     _$QuestionOptionModelImpl(
-      optionId: (json['optionId'] as num).toInt(),
-      questionId: (json['questionId'] as num).toInt(),
-      optionText: json['optionText'] as String,
+      optionId: (json['optionId'] as num?)?.toInt(),
+      questionId: (json['questionId'] as num?)?.toInt(),
+      optionText: json['optionText'] as String?,
     );
 
 Map<String, dynamic> _$$QuestionOptionModelImplToJson(

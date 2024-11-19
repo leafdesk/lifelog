@@ -15,8 +15,6 @@ abstract class LifeLogApi {
   factory LifeLogApi(Dio dio, {String baseUrl}) = _LifeLogApi;
 
   /// User endpoints
-  ///
-  ///
   @GET('/api/users/{id}')
   Future<UserModel> getUser(@Path('id') int id);
 
@@ -31,8 +29,6 @@ abstract class LifeLogApi {
   Future<UserModel> createUser(@Body() Map<String, dynamic> user);
 
   /// Question Option endpoints
-  ///
-  ///
   @GET('/api/question-options/{id}')
   Future<QuestionOptionModel> getQuestionOption(@Path('id') int id);
 
@@ -48,8 +44,6 @@ abstract class LifeLogApi {
       @Body() Map<String, dynamic> option);
 
   /// Photo endpoints
-  ///
-  ///
   @GET('/api/photo/{id}')
   Future<PhotoModel> getPhoto(@Path('id') int id);
 
@@ -67,8 +61,6 @@ abstract class LifeLogApi {
   Future<PhotoModel> createPhoto(@Body() Map<String, dynamic> photo);
 
   /// Diary Entry endpoints
-  ///
-  ///
   @GET('/api/diary-entry/{id}')
   Future<DiaryEntryModel> getDiaryEntry(@Path('id') int id);
 
@@ -86,8 +78,6 @@ abstract class LifeLogApi {
   Future<DiaryEntryModel> createDiaryEntry(@Body() Map<String, dynamic> entry);
 
   /// Custom Question endpoints
-  ///
-  ///
   @GET('/api/custom-questions/{id}')
   Future<QuestionModel> getCustomQuestion(@Path('id') int id);
 
@@ -103,8 +93,6 @@ abstract class LifeLogApi {
       @Body() Map<String, dynamic> question);
 
   /// Answer endpoints
-  ///
-  ///
   @GET('/api/answers/{id}')
   Future<AnswerModel> getAnswer(@Path('id') int id);
 

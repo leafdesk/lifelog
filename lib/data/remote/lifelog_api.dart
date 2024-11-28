@@ -105,4 +105,9 @@ abstract class LifeLogApi {
 
   @POST('/api/answers')
   Future<AnswerModel> createAnswer(@Body() Map<String, dynamic> answer);
+
+  /// Statistics endpoint
+  @GET('/api/statistics')
+  Future<Map<String, String>> getStatistics(@Query('month') int month,
+      @Query('year') int year, @Query('type') List<String> type);
 }

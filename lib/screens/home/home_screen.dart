@@ -14,6 +14,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final HomeController _homeController = Get.put(HomeController());
 
   @override
+  void initState() {
+    super.initState();
+    _homeController.loadDiaryData(_homeController.selectedDay.value);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -25,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedDayPredicate: (day) =>
                 isSameDay(_homeController.selectedDay.value, day),
             onDaySelected: (selectedDay, focusedDay) {
-              _homeController.updateSelectedDay(selectedDay);
+              setState(() {
+                _homeController.updateSelectedDay(selectedDay);
+              });
             },
           ),
           const SizedBox(height: 20),
@@ -36,8 +44,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     // 감정 상태
+                    Obx(() => Column(
+                          children: [
+                            Text('사용자 이름: ${_homeController.username.value}'),
+                            Text('이메일: ${_homeController.email.value}'),
+                            ElevatedButton(
+                              onPressed: () {
+                                _homeController.doApiTest();
+                              },
+                              child: const Text('API 테스트'),
+                            ),
+                          ],
+                        )),
+
                     Obx(() => Text(
-                          '감정 상태: ${_homeController.mood.value}',
+                          '감정 상태: ${_homeController.dailyMood.value}',
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         )),
@@ -45,35 +66,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 10),
                     // 일기
                     Obx(() => Text(
-                          _homeController.diaryEntry.value,
+                          _homeController.dailyDiaryEntry.value,
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         )),
 
                     const SizedBox(height: 10),
                     // // 사진
-                    Obx(() => Text(
-                          _homeController.photoUrl.value,
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        )),
-
-                    // Obx(() => Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //       children: [
-                    //         Image.network(_homeController.photoUrl.value,
-                    //             width: 60, height: 60),
-                    //         Image.network(_homeController.photoUrl.value,
-                    //             width: 60, height: 60),
-                    //         Image.network(_homeController.photoUrl.value,
-                    //             width: 60, height: 60),
-                    //       ],
-                    //     )),
+                    // Obx(() => _homeController.dailyPhotoUrl.value.isNotEmpty
+                    //   ? Image.network(
+                    //       _homeController.dailyPhotoUrl.value,
+                    //       width: 200,
+                    //       height: 200,
+                    //       fit: BoxFit.cover,
+                    //     )
+                    //   : const SizedBox()),
 
                     const SizedBox(height: 10),
                     // 사용자 지정 질문
 
-                    Obx(() => Text(_homeController.customQuestion.value,
+                    Obx(() => Text(_homeController.dailyCustomQuestion.value,
                         style: const TextStyle(fontSize: 16))),
                   ],
                 ),

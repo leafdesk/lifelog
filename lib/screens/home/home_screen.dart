@@ -44,19 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     // 감정 상태
-                    Obx(() => Column(
-                          children: [
-                            Text('사용자 이름: ${_homeController.username.value}'),
-                            Text('이메일: ${_homeController.email.value}'),
-                            ElevatedButton(
-                              onPressed: () {
-                                _homeController.doApiTest();
-                              },
-                              child: const Text('API 테스트'),
-                            ),
-                          ],
-                        )),
-
                     Obx(() => Text(
                           '감정 상태: ${_homeController.dailyMood.value}',
                           style: const TextStyle(
@@ -64,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         )),
 
                     const SizedBox(height: 10),
+
                     // 일기
                     Obx(() => Text(
                           _homeController.dailyDiaryEntry.value,

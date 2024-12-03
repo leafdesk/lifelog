@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart'; // pub.dev에서 fl_chart 패키지 추가 필요
+import 'package:get/get.dart';
+import 'package:lifelog/screens/statistics/statistics_controller.dart';
 
 class StatisticsScreen extends StatefulWidget {
   const StatisticsScreen({super.key});
@@ -9,7 +11,16 @@ class StatisticsScreen extends StatefulWidget {
 }
 
 class _StatisticsScreenState extends State<StatisticsScreen> {
+  final StatisticsController _statisticsController =
+      Get.put(StatisticsController());
+
   String selectedMonth = '10월';
+
+  @override
+  void initState() {
+    super.initState();
+    _statisticsController.loadStatisticsData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +88,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildEmotionStat('😊', '행복', '25%'),
-              _buildEmotionStat('🤪', '즐거움', '24%'),
-              _buildEmotionStat('😐', '보통임', '31%'),
-              _buildEmotionStat('😢', '슬픔', '19%'),
-              _buildEmotionStat('😠', '화남', '2%'),
+              _buildEmotionStat('😊', '행복', _statisticsController.statisticsData.value['1']),
+              _buildEmotionStat('🤪', '즐거움', _statisticsController.statisticsData.value['2']),
+              _buildEmotionStat('😐', '보통임', _statisticsController.statisticsData.value['3']),
+              _buildEmotionStat('😢', '슬픔', _statisticsController.statisticsData.value['4']),
+              _buildEmotionStat('😠', '화남', _statisticsController.statisticsData.value['5']),
             ],
           ),
 

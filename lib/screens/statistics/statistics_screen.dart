@@ -142,36 +142,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
 
           const SizedBox(height: 24),
 
-          // 가장 많이 한 루틴 TOP 3
-          const Text(
-            '가장 많이 한 루틴 TOP 3',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildRoutineItem('1. 명상하기', '30회'),
-          _buildRoutineItem('2. 요리하기', '22회'),
-          _buildRoutineItem('3. 독서하기', '21회'),
-
-          const SizedBox(height: 24),
-
-          // 수면 루틴
-          const Text(
-            '수면 루틴',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildSleepRoutineGrid(),
         ],
       ),
     );
   }
-
+        
   Widget _buildEmotionStat(String emoji, String label, String percentage) {
     return Column(
       children: [

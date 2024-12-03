@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lifelog/app_controller.dart';
 import 'package:lifelog/screens/home/home_screen.dart';
 import 'package:lifelog/screens/settings_screen.dart';
-import 'package:lifelog/screens/statistics_screen.dart';
+import 'package:lifelog/screens/statistics/statistics_screen.dart';
 
 void main() {
   runApp(const LifeLogApplication());

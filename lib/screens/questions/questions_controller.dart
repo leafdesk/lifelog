@@ -1,5 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lifelog/models/question/question_model.dart';
+import 'package:lifelog/utils/data_state.dart';
 import 'package:lifelog/utils/log_util.dart';
+import 'package:lifelog/repositories/custom_question_repository.dart'; // Import the repository
 
 class QuestionsController extends GetxController {
   static String tag = "QuestionsController";
@@ -13,15 +17,21 @@ class QuestionsController extends GetxController {
   // 질문 목록을 로드하는 메서드
   Future<void> loadQuestions() async {
     try {
-      // TODO: API 연동 시 실제 데이터로 교체
-      questions.value = [
-        '오늘 하루 중 가장 좋았던 순간은?',
-        '내일 꼭 하고 싶은 일은?',
-        '오늘 나에게 가장 도움이 된 사람은?',
-        '오늘 배운 것이 있다면?'
-      ];
+      int userId = 1; // Replace with actual user ID retrieval method
+
+      final result =
+          await CustomQuestionRepository().getCustomQuestionsByUser(userId);
+
+      if (result is DataSuccess<List<QuestionModel>>) {
+        questions.value = result.data?.map((q) => q.question).toList() ??
+            []; // Safely access questions
+      } else {
+        LogUtil.e(tag, '질문 데이터 로드 실패: ${result.error}');
+        questions.value = []; // Initialize to empty list on error
+      }
     } catch (e) {
       LogUtil.e(tag, '질문 데이터 로드 실패: $e');
+      questions.value = []; // Initialize to empty list on exception
     }
   }
 

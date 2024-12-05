@@ -10,7 +10,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'lifelog_api.g.dart';
 
-@RestApi(baseUrl: Constants.swaggerServerUrl)
+@RestApi(baseUrl: Constants.localServerUrl)
 abstract class LifeLogApi {
   factory LifeLogApi(Dio dio, {String baseUrl}) = _LifeLogApi;
 
@@ -91,6 +91,9 @@ abstract class LifeLogApi {
   @POST('/api/custom-questions')
   Future<QuestionModel> createCustomQuestion(
       @Body() Map<String, dynamic> question);
+
+  @GET('/api/custom-questions/user/{id}')
+  Future<QuestionResponse> getCustomQuestionsByUser(@Path('id') int id);
 
   /// Answer endpoints
   @GET('/api/answers/{id}')

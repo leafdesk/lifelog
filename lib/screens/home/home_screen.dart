@@ -43,6 +43,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(16.0),
                 child: Column(
                   children: [
+                    // API 연동 테스트
+                    ElevatedButton(
+                      onPressed: () {
+                        _homeController.doApiTest();
+                      },
+                      child: const Text('API 연동 테스트'),
+                    ),
+
                     // 감정 상태
                     Obx(() => Text(
                           '감정 상태: ${_homeController.dailyMood.value}',

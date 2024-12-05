@@ -67,4 +67,17 @@ class CustomQuestionRepository {
       return DataLocalFailed(e.toString());
     }
   }
+
+  Future<DataState<List<QuestionModel>>> getCustomQuestionsByUser(
+      int userId) async {
+    try {
+      final response = await _lifeLogApi.getCustomQuestionsByUser(userId);
+      return DataSuccess(response.questions);
+    } on DioException catch (e) {
+      debugPrint("$e");
+      return DataFailed(e);
+    } catch (e) {
+      return DataLocalFailed(e.toString());
+    }
+  }
 }

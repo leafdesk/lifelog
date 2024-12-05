@@ -28,12 +28,15 @@ class HomeController extends GetxController {
 
   /// API 테스트 수행.
   void doApiTest() async {
-    var result = await _userRepository.getUser(1);
+    var result = await _userRepository.getUser(2);
     if (result is DataSuccess) {
       var user = result.data;
       if (user != null) {
         username.value = user.username ?? '';
         email.value = user.email ?? '';
+
+        print('username: ${username.value}');
+        print('email: ${email.value}');
       }
     }
   }

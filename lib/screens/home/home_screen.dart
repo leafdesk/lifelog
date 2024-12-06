@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _homeController.loadDiaryData(_homeController.selectedDay.value);
+    _homeController.loadDiaryData(_homeController.selectedDay.value, 1);
   }
 
   @override
@@ -43,17 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    // API 연동 테스트
-                    ElevatedButton(
-                      onPressed: () {
-                        _homeController.doApiTest();
-                      },
-                      child: const Text('API 연동 테스트'),
-                    ),
-
                     // 감정 상태
                     Obx(() => Text(
-                          '감정 상태: ${_homeController.dailyMood.value}',
+                          '감정 상태: ${_homeController.emotionScore.value}',
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         )),
@@ -62,27 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     // 일기
                     Obx(() => Text(
-                          _homeController.dailyDiaryEntry.value,
+                          _homeController.content.value,
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         )),
 
                     const SizedBox(height: 10),
-                    // // 사진
-                    // Obx(() => _homeController.dailyPhotoUrl.value.isNotEmpty
-                    //   ? Image.network(
-                    //       _homeController.dailyPhotoUrl.value,
-                    //       width: 200,
-                    //       height: 200,
-                    //       fit: BoxFit.cover,
-                    //     )
-                    //   : const SizedBox()),
-
-                    const SizedBox(height: 10),
-                    // 사용자 지정 질문
-
-                    Obx(() => Text(_homeController.dailyCustomQuestion.value,
-                        style: const TextStyle(fontSize: 16))),
                   ],
                 ),
               ),

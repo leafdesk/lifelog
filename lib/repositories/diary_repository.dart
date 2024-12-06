@@ -77,4 +77,21 @@ class DiaryRepository {
       return DataLocalFailed(e.toString());
     }
   }
+
+  /// 유저 아이디와 날짜를 기준으로 일기 조회
+  /// param: userId - 유저 아이디
+  /// param: date - 날짜
+  /// return: DataState<DiaryEntryModel>
+  Future<DataState<DiaryEntryModel>> getDiaryEntryByUserAndDate(
+      int userId, String date) async {
+    try {
+      final entry = await _lifeLogApi.getDiaryEntryByUserAndDate(userId, date);
+      return DataSuccess(entry);
+    } on DioException catch (e) {
+      debugPrint("$e");
+      return DataFailed(e);
+    } catch (e) {
+      return DataLocalFailed(e.toString());
+    }
+  }
 }

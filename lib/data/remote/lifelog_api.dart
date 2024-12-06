@@ -113,4 +113,12 @@ abstract class LifeLogApi {
   @GET('/api/statistics')
   Future<Map<String, String>> getStatistics(@Query('month') int month,
       @Query('year') int year, @Query('type') List<String> type);
+
+  /// 유저 아이디와 날짜를 기준으로 일기 조회
+  /// param: userId - 유저 아이디
+  /// param: date - 날짜
+  /// return: DiaryEntryModel
+  @GET('/api/diary-entry/user/{userId}/date')
+  Future<DiaryEntryModel> getDiaryEntryByUserAndDate(
+      @Path('userId') int userId, @Query('date') String date);
 }

@@ -9,23 +9,23 @@ part of 'diary_entry_model.dart';
 _$DiaryEntryModelImpl _$$DiaryEntryModelImplFromJson(
         Map<String, dynamic> json) =>
     _$DiaryEntryModelImpl(
-      entryId: (json['entryId'] as num?)?.toInt(),
-      userId: (json['userId'] as num?)?.toInt(),
+      entryId: (json['entry_id'] as num?)?.toInt(),
+      userId: (json['user_id'] as num?)?.toInt(),
       date: json['date'] as String?,
-      context: json['context'] as String?,
-      emotionScore: (json['emotionScore'] as num?)?.toInt(),
-      createdAt: json['createdAt'] as String?,
-      updatedAt: json['updatedAt'] as String?,
+      content: json['content'] as String?,
+      emotionScore: json['emotion_score'] as String?,
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
     );
 
 Map<String, dynamic> _$$DiaryEntryModelImplToJson(
         _$DiaryEntryModelImpl instance) =>
     <String, dynamic>{
-      'entryId': instance.entryId,
-      'userId': instance.userId,
+      'entry_id': instance.entryId,
+      'user_id': instance.userId,
       'date': instance.date,
-      'context': instance.context,
-      'emotionScore': instance.emotionScore,
-      'createdAt': instance.createdAt,
-      'updatedAt': instance.updatedAt,
+      'content': instance.content,
+      'emotion_score': instance.emotionScore,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
     };

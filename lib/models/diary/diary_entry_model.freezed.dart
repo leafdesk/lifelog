@@ -20,12 +20,17 @@ DiaryEntryModel _$DiaryEntryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DiaryEntryModel {
+  @JsonKey(name: 'entry_id')
   int? get entryId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
   int? get userId => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
-  String? get context => throw _privateConstructorUsedError;
-  int? get emotionScore => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'emotion_score')
+  String? get emotionScore => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
   String? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,13 +46,13 @@ abstract class $DiaryEntryModelCopyWith<$Res> {
       _$DiaryEntryModelCopyWithImpl<$Res, DiaryEntryModel>;
   @useResult
   $Res call(
-      {int? entryId,
-      int? userId,
+      {@JsonKey(name: 'entry_id') int? entryId,
+      @JsonKey(name: 'user_id') int? userId,
       String? date,
-      String? context,
-      int? emotionScore,
-      String? createdAt,
-      String? updatedAt});
+      String? content,
+      @JsonKey(name: 'emotion_score') String? emotionScore,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt});
 }
 
 /// @nodoc
@@ -66,7 +71,7 @@ class _$DiaryEntryModelCopyWithImpl<$Res, $Val extends DiaryEntryModel>
     Object? entryId = freezed,
     Object? userId = freezed,
     Object? date = freezed,
-    Object? context = freezed,
+    Object? content = freezed,
     Object? emotionScore = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -84,14 +89,14 @@ class _$DiaryEntryModelCopyWithImpl<$Res, $Val extends DiaryEntryModel>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      context: freezed == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String?,
       emotionScore: freezed == emotionScore
           ? _value.emotionScore
           : emotionScore // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -113,13 +118,13 @@ abstract class _$$DiaryEntryModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? entryId,
-      int? userId,
+      {@JsonKey(name: 'entry_id') int? entryId,
+      @JsonKey(name: 'user_id') int? userId,
       String? date,
-      String? context,
-      int? emotionScore,
-      String? createdAt,
-      String? updatedAt});
+      String? content,
+      @JsonKey(name: 'emotion_score') String? emotionScore,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt});
 }
 
 /// @nodoc
@@ -136,7 +141,7 @@ class __$$DiaryEntryModelImplCopyWithImpl<$Res>
     Object? entryId = freezed,
     Object? userId = freezed,
     Object? date = freezed,
-    Object? context = freezed,
+    Object? content = freezed,
     Object? emotionScore = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -154,14 +159,14 @@ class __$$DiaryEntryModelImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      context: freezed == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String?,
       emotionScore: freezed == emotionScore
           ? _value.emotionScore
           : emotionScore // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -178,35 +183,40 @@ class __$$DiaryEntryModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DiaryEntryModelImpl implements _DiaryEntryModel {
   const _$DiaryEntryModelImpl(
-      {this.entryId,
-      this.userId,
+      {@JsonKey(name: 'entry_id') this.entryId,
+      @JsonKey(name: 'user_id') this.userId,
       this.date,
-      this.context,
-      this.emotionScore,
-      this.createdAt,
-      this.updatedAt});
+      this.content,
+      @JsonKey(name: 'emotion_score') this.emotionScore,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt});
 
   factory _$DiaryEntryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DiaryEntryModelImplFromJson(json);
 
   @override
+  @JsonKey(name: 'entry_id')
   final int? entryId;
   @override
+  @JsonKey(name: 'user_id')
   final int? userId;
   @override
   final String? date;
   @override
-  final String? context;
+  final String? content;
   @override
-  final int? emotionScore;
+  @JsonKey(name: 'emotion_score')
+  final String? emotionScore;
   @override
+  @JsonKey(name: 'created_at')
   final String? createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   final String? updatedAt;
 
   @override
   String toString() {
-    return 'DiaryEntryModel(entryId: $entryId, userId: $userId, date: $date, context: $context, emotionScore: $emotionScore, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DiaryEntryModel(entryId: $entryId, userId: $userId, date: $date, content: $content, emotionScore: $emotionScore, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -217,7 +227,7 @@ class _$DiaryEntryModelImpl implements _DiaryEntryModel {
             (identical(other.entryId, entryId) || other.entryId == entryId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.context, context) || other.context == context) &&
+            (identical(other.content, content) || other.content == content) &&
             (identical(other.emotionScore, emotionScore) ||
                 other.emotionScore == emotionScore) &&
             (identical(other.createdAt, createdAt) ||
@@ -228,7 +238,7 @@ class _$DiaryEntryModelImpl implements _DiaryEntryModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, entryId, userId, date, context,
+  int get hashCode => Object.hash(runtimeType, entryId, userId, date, content,
       emotionScore, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
@@ -248,30 +258,36 @@ class _$DiaryEntryModelImpl implements _DiaryEntryModel {
 
 abstract class _DiaryEntryModel implements DiaryEntryModel {
   const factory _DiaryEntryModel(
-      {final int? entryId,
-      final int? userId,
-      final String? date,
-      final String? context,
-      final int? emotionScore,
-      final String? createdAt,
-      final String? updatedAt}) = _$DiaryEntryModelImpl;
+          {@JsonKey(name: 'entry_id') final int? entryId,
+          @JsonKey(name: 'user_id') final int? userId,
+          final String? date,
+          final String? content,
+          @JsonKey(name: 'emotion_score') final String? emotionScore,
+          @JsonKey(name: 'created_at') final String? createdAt,
+          @JsonKey(name: 'updated_at') final String? updatedAt}) =
+      _$DiaryEntryModelImpl;
 
   factory _DiaryEntryModel.fromJson(Map<String, dynamic> json) =
       _$DiaryEntryModelImpl.fromJson;
 
   @override
+  @JsonKey(name: 'entry_id')
   int? get entryId;
   @override
+  @JsonKey(name: 'user_id')
   int? get userId;
   @override
   String? get date;
   @override
-  String? get context;
+  String? get content;
   @override
-  int? get emotionScore;
+  @JsonKey(name: 'emotion_score')
+  String? get emotionScore;
   @override
+  @JsonKey(name: 'created_at')
   String? get createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   String? get updatedAt;
   @override
   @JsonKey(ignore: true)

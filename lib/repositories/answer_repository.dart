@@ -65,4 +65,19 @@ class AnswerRepository {
       return DataLocalFailed(e.toString());
     }
   }
+
+  /// 일기 아이디를 기준으로 답변 조회
+  /// param: entryId - 일기 아이디
+  /// return: List<AnswerModel>
+  Future<DataState<List<AnswerModel>>> getAnswersByEntryId(int entryId) async {
+    try {
+      final answers = await _lifeLogApi.getAnswersByEntryId(entryId);
+      return DataSuccess(answers);
+    } on DioException catch (e) {
+      debugPrint("$e");
+      return DataFailed(e);
+    } catch (e) {
+      return DataLocalFailed(e.toString());
+    }
+  }
 }

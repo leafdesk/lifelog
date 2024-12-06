@@ -8,24 +8,26 @@ part of 'answer_model.dart';
 
 _$AnswerModelImpl _$$AnswerModelImplFromJson(Map<String, dynamic> json) =>
     _$AnswerModelImpl(
-      answerId: (json['answerId'] as num?)?.toInt(),
-      questionId: (json['questionId'] as num?)?.toInt(),
-      userId: (json['userId'] as num?)?.toInt(),
-      answerText: json['answerText'] as String?,
-      createdAt: json['createdAt'] == null
+      answerId: (json['answer_id'] as num?)?.toInt(),
+      questionId: (json['question_id'] as num?)?.toInt(),
+      userId: (json['user_id'] as num?)?.toInt(),
+      answerText: json['answer_text'] as String?,
+      questionText: json['question_text'] as String?,
+      createdAt: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
+          : DateTime.parse(json['created_at'] as String),
+      updatedAt: json['updated_at'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$$AnswerModelImplToJson(_$AnswerModelImpl instance) =>
     <String, dynamic>{
-      'answerId': instance.answerId,
-      'questionId': instance.questionId,
-      'userId': instance.userId,
-      'answerText': instance.answerText,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'answer_id': instance.answerId,
+      'question_id': instance.questionId,
+      'user_id': instance.userId,
+      'answer_text': instance.answerText,
+      'question_text': instance.questionText,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
     };

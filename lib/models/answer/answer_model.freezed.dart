@@ -20,11 +20,19 @@ AnswerModel _$AnswerModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AnswerModel {
+  @JsonKey(name: 'answer_id')
   int? get answerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'question_id')
   int? get questionId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
   int? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'answer_text')
   String? get answerText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'question_text')
+  String? get questionText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,12 +48,13 @@ abstract class $AnswerModelCopyWith<$Res> {
       _$AnswerModelCopyWithImpl<$Res, AnswerModel>;
   @useResult
   $Res call(
-      {int? answerId,
-      int? questionId,
-      int? userId,
-      String? answerText,
-      DateTime? createdAt,
-      DateTime? updatedAt});
+      {@JsonKey(name: 'answer_id') int? answerId,
+      @JsonKey(name: 'question_id') int? questionId,
+      @JsonKey(name: 'user_id') int? userId,
+      @JsonKey(name: 'answer_text') String? answerText,
+      @JsonKey(name: 'question_text') String? questionText,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -65,6 +74,7 @@ class _$AnswerModelCopyWithImpl<$Res, $Val extends AnswerModel>
     Object? questionId = freezed,
     Object? userId = freezed,
     Object? answerText = freezed,
+    Object? questionText = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -84,6 +94,10 @@ class _$AnswerModelCopyWithImpl<$Res, $Val extends AnswerModel>
       answerText: freezed == answerText
           ? _value.answerText
           : answerText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      questionText: freezed == questionText
+          ? _value.questionText
+          : questionText // ignore: cast_nullable_to_non_nullable
               as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -106,12 +120,13 @@ abstract class _$$AnswerModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? answerId,
-      int? questionId,
-      int? userId,
-      String? answerText,
-      DateTime? createdAt,
-      DateTime? updatedAt});
+      {@JsonKey(name: 'answer_id') int? answerId,
+      @JsonKey(name: 'question_id') int? questionId,
+      @JsonKey(name: 'user_id') int? userId,
+      @JsonKey(name: 'answer_text') String? answerText,
+      @JsonKey(name: 'question_text') String? questionText,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -129,6 +144,7 @@ class __$$AnswerModelImplCopyWithImpl<$Res>
     Object? questionId = freezed,
     Object? userId = freezed,
     Object? answerText = freezed,
+    Object? questionText = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -149,6 +165,10 @@ class __$$AnswerModelImplCopyWithImpl<$Res>
           ? _value.answerText
           : answerText // ignore: cast_nullable_to_non_nullable
               as String?,
+      questionText: freezed == questionText
+          ? _value.questionText
+          : questionText // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -165,32 +185,42 @@ class __$$AnswerModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AnswerModelImpl implements _AnswerModel {
   const _$AnswerModelImpl(
-      {this.answerId,
-      this.questionId,
-      this.userId,
-      this.answerText,
-      this.createdAt,
-      this.updatedAt});
+      {@JsonKey(name: 'answer_id') this.answerId,
+      @JsonKey(name: 'question_id') this.questionId,
+      @JsonKey(name: 'user_id') this.userId,
+      @JsonKey(name: 'answer_text') this.answerText,
+      @JsonKey(name: 'question_text') this.questionText,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt});
 
   factory _$AnswerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AnswerModelImplFromJson(json);
 
   @override
+  @JsonKey(name: 'answer_id')
   final int? answerId;
   @override
+  @JsonKey(name: 'question_id')
   final int? questionId;
   @override
+  @JsonKey(name: 'user_id')
   final int? userId;
   @override
+  @JsonKey(name: 'answer_text')
   final String? answerText;
   @override
+  @JsonKey(name: 'question_text')
+  final String? questionText;
+  @override
+  @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'AnswerModel(answerId: $answerId, questionId: $questionId, userId: $userId, answerText: $answerText, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'AnswerModel(answerId: $answerId, questionId: $questionId, userId: $userId, answerText: $answerText, questionText: $questionText, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -205,6 +235,8 @@ class _$AnswerModelImpl implements _AnswerModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.answerText, answerText) ||
                 other.answerText == answerText) &&
+            (identical(other.questionText, questionText) ||
+                other.questionText == questionText) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -214,7 +246,7 @@ class _$AnswerModelImpl implements _AnswerModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, answerId, questionId, userId,
-      answerText, createdAt, updatedAt);
+      answerText, questionText, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -232,27 +264,38 @@ class _$AnswerModelImpl implements _AnswerModel {
 
 abstract class _AnswerModel implements AnswerModel {
   const factory _AnswerModel(
-      {final int? answerId,
-      final int? questionId,
-      final int? userId,
-      final String? answerText,
-      final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$AnswerModelImpl;
+          {@JsonKey(name: 'answer_id') final int? answerId,
+          @JsonKey(name: 'question_id') final int? questionId,
+          @JsonKey(name: 'user_id') final int? userId,
+          @JsonKey(name: 'answer_text') final String? answerText,
+          @JsonKey(name: 'question_text') final String? questionText,
+          @JsonKey(name: 'created_at') final DateTime? createdAt,
+          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
+      _$AnswerModelImpl;
 
   factory _AnswerModel.fromJson(Map<String, dynamic> json) =
       _$AnswerModelImpl.fromJson;
 
   @override
+  @JsonKey(name: 'answer_id')
   int? get answerId;
   @override
+  @JsonKey(name: 'question_id')
   int? get questionId;
   @override
+  @JsonKey(name: 'user_id')
   int? get userId;
   @override
+  @JsonKey(name: 'answer_text')
   String? get answerText;
   @override
+  @JsonKey(name: 'question_text')
+  String? get questionText;
+  @override
+  @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)

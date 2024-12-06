@@ -100,7 +100,7 @@ class _DiaryEntryScreenState extends State<DiaryEntryScreen> {
                     _diaryContentController.text,
                     widget.selectedDate,
                   );
-                  Get.back(); // 이전 페이지로 돌아가기
+                  Get.back(result: true); // 이전 페이지로 돌아가기
                 }
               },
               child: const Text('작성 완료'),

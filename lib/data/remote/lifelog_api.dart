@@ -109,6 +109,12 @@ abstract class LifeLogApi {
   @POST('/api/answers')
   Future<AnswerModel> createAnswer(@Body() Map<String, dynamic> answer);
 
+  /// 일기 아이디를 기준으로 답변 조회
+  /// param: entryId - 일기 아이디
+  /// return: List<AnswerModel>
+  @GET('/api/answers/entry/{entryId}')
+  Future<List<AnswerModel>> getAnswersByEntryId(@Path('entryId') int entryId);
+
   /// Statistics endpoint
   @GET('/api/statistics')
   Future<Map<String, String>> getStatistics(@Query('month') int month,

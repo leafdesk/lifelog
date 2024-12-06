@@ -3,6 +3,8 @@ import 'package:lifelog/screens/home/diary/diary_entry_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get.dart';
 import 'package:lifelog/screens/home/home_controller.dart';
+import 'package:lifelog/models/question/question_model.dart';
+import 'package:lifelog/models/answer/answer_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -61,6 +63,44 @@ class _HomeScreenState extends State<HomeScreen> {
                         )),
 
                     const SizedBox(height: 10),
+
+                    // 질문-답변 리스트 추가
+                    Obx(() {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List.generate(
+                          _homeController.questions.length,
+                          (index) {
+                            final question = _homeController.questions[index];
+                            final answer = _homeController.answers.length >
+                                    index
+                                ? _homeController.answers[index].answerText
+                                : ''; // Handle case where answer might not exist
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '질문: ${question.question ?? '질문 없음'}',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    '답변: $answer',
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    }),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -69,9 +109,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(() => DiaryEntryScreen(
+        onPressed: () async {
+          final result = await Get.to(() => DiaryEntryScreen(
               selectedDate: _homeController.selectedDay.value));
+          if (result == true) {
+            // 결과가 true일 때 diary 데이터 새로 고침
+            _homeController.loadDiaryData(_homeController.selectedDay.value, 1);
+          }
         },
         child: Obx(() {
           return Icon(

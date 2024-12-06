@@ -92,6 +92,8 @@ class QuestionsController extends GetxController {
       LogUtil.i(tag, 'updateCustomQuestion. result: $result');
     } catch (e) {
       LogUtil.e(tag, 'updateCustomQuestion. $e');
+    } finally {
+      await loadQuestions();
     }
   }
 

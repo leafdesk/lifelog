@@ -35,9 +35,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   }
 
   void _showAddQuestionDialog() {
-    String selectedType = '객관식'; // Default to multiple-choice
-    List<String> options = []; // To hold options for multiple-choice questions
-
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -53,46 +50,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     hintText: '질문을 입력하세요',
                   ),
                 ),
-                DropdownButton<String>(
-                  value: selectedType,
-                  items: <String>['객관식', '주관식']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedType = newValue!;
-                    });
-                  },
-                ),
-                if (selectedType == '객관식') ...[
-                  // Add options for multiple-choice
-                  ...options.map((option) => ListTile(
-                        title: Text(option),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () {
-                            setState(() {
-                              options.remove(option);
-                            });
-                          },
-                        ),
-                      )),
-                  TextButton(
-                    onPressed: () {
-                      // Logic to add a new option
-                      String newOption =
-                          ''; // Get this from a TextField or similar
-                      setState(() {
-                        options.add(newOption);
-                      });
-                    },
-                    child: const Text('옵션 추가'),
-                  ),
-                ],
               ],
             ),
             actions: [
@@ -105,8 +62,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                   if (_textController.text.isNotEmpty) {
                     await _questionsController.createCustomQuestion(
                       _textController.text,
-                      selectedType,
-                      options,
+                      "주관식", // 기본값으로 주관식 설정
+                      [], // 옵션을 빈 리스트로 설정
                     );
                     _textController.clear();
                     Navigator.pop(context);

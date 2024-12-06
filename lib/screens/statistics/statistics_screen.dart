@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart'; // pub.dev에서 fl_chart 패키지 추가 필요
+import 'package:fl_chart/fl_chart.dart';
+import 'package:get/get.dart';
+import 'package:lifelog/screens/statistics/statistics_controller.dart';
 
 class StatisticsScreen extends StatefulWidget {
   const StatisticsScreen({super.key});
@@ -9,7 +11,15 @@ class StatisticsScreen extends StatefulWidget {
 }
 
 class _StatisticsScreenState extends State<StatisticsScreen> {
-  String selectedMonth = '10월';
+  final StatisticsController _statisticsController =
+      Get.put(StatisticsController());
+
+  @override
+  void initState() {
+    super.initState();
+    // 현재 월과 연도의 통계 데이터를 가져옴
+    _statisticsController.fetchStatistics();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,24 +51,27 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
               border: Border.all(color: Colors.grey.shade300),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: DropdownButton<String>(
-              value: selectedMonth,
-              isExpanded: true,
-              underline: const SizedBox(),
-              items: List.generate(12, (index) => '${index + 1}월')
-                  .map((String month) => DropdownMenuItem(
-                        value: month,
-                        child: Text(month),
-                      ))
-                  .toList(),
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  setState(() {
-                    selectedMonth = newValue;
-                  });
-                }
-              },
-            ),
+            child: Obx(() {
+              return DropdownButton<String>(
+                value: '${_statisticsController.selectedMonth.value}월',
+                isExpanded: true,
+                underline: const SizedBox(),
+                items: List.generate(12, (index) => '${index + 1}월')
+                    .map((String month) => DropdownMenuItem(
+                          value: month,
+                          child: Text(month),
+                        ))
+                    .toList(),
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    int monthValue = int.parse(newValue.split('월')[0]);
+                    _statisticsController.selectedMonth.value = monthValue;
+                    _statisticsController
+                        .fetchStatistics(); // 월 변경 시 통계 데이터 재요청
+                  }
+                },
+              );
+            }),
           ),
 
           const SizedBox(height: 24),
@@ -74,16 +87,29 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           const SizedBox(height: 16),
 
           // 이모지와 퍼센트
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildEmotionStat('😊', '행복', '25%'),
-              _buildEmotionStat('🤪', '즐거움', '24%'),
-              _buildEmotionStat('😐', '보통임', '31%'),
-              _buildEmotionStat('😢', '슬픔', '19%'),
-              _buildEmotionStat('😠', '화남', '2%'),
-            ],
-          ),
+          Obx(() {
+            final happyPercentage =
+                _statisticsController.statisticsData[5] ?? '0%'; // 5가 행복
+            final joyPercentage =
+                _statisticsController.statisticsData[4] ?? '0%'; // 4가 즐거움
+            final neutralPercentage =
+                _statisticsController.statisticsData[3] ?? '0%'; // 3가 보통
+            final sadPercentage =
+                _statisticsController.statisticsData[2] ?? '0%'; // 2가 슬픔
+            final angryPercentage =
+                _statisticsController.statisticsData[1] ?? '0%'; // 1이 화남
+
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildEmotionStat('😊', '행복', happyPercentage),
+                _buildEmotionStat('🤪', '즐거움', joyPercentage),
+                _buildEmotionStat('😐', '보통임', neutralPercentage),
+                _buildEmotionStat('😢', '슬픔', sadPercentage),
+                _buildEmotionStat('😠', '화남', angryPercentage),
+              ],
+            );
+          }),
 
           const SizedBox(height: 24),
 
@@ -95,11 +121,26 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                 alignment: BarChartAlignment.spaceAround,
                 maxY: 30,
                 barGroups: [
-                  _buildBarGroup(0, 20), // 행복
-                  _buildBarGroup(1, 19), // 즐거움
-                  _buildBarGroup(2, 25), // 보통
-                  _buildBarGroup(3, 15), // 슬픔
-                  _buildBarGroup(4, 2), // 화남
+                  _buildBarGroup(
+                      0,
+                      double.parse(_statisticsController.statisticsData[5] ??
+                          '0')), // 행복
+                  _buildBarGroup(
+                      1,
+                      double.parse(_statisticsController.statisticsData[4] ??
+                          '0')), // 즐거움
+                  _buildBarGroup(
+                      2,
+                      double.parse(_statisticsController.statisticsData[3] ??
+                          '0')), // 보통
+                  _buildBarGroup(
+                      3,
+                      double.parse(_statisticsController.statisticsData[2] ??
+                          '0')), // 슬픔
+                  _buildBarGroup(
+                      4,
+                      double.parse(_statisticsController.statisticsData[1] ??
+                          '0')), // 화남
                 ],
                 titlesData: FlTitlesData(
                   show: true,
@@ -130,32 +171,6 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ),
 
           const SizedBox(height: 24),
-
-          // 가장 많이 한 루틴 TOP 3
-          const Text(
-            '가장 많이 한 루틴 TOP 3',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildRoutineItem('1. 명상하기', '30회'),
-          _buildRoutineItem('2. 요리하기', '22회'),
-          _buildRoutineItem('3. 독서하기', '21회'),
-
-          const SizedBox(height: 24),
-
-          // 수면 루틴
-          const Text(
-            '수면 루틴',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildSleepRoutineGrid(),
         ],
       ),
     );
@@ -182,59 +197,6 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
         ),
       ],
-    );
-  }
-
-  Widget _buildRoutineItem(String title, String count) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title),
-          Text(count, style: const TextStyle(color: Colors.grey)),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSleepRoutineGrid() {
-    return GridView.count(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 2,
-      childAspectRatio: 2.5,
-      children: [
-        _buildSleepRoutineItem('평균 수면 시간', '7.2시간', Icons.bedtime),
-        _buildSleepRoutineItem('평균 취침 시간', '22:56', Icons.nights_stay),
-        _buildSleepRoutineItem('평균 기상 시간', '06:25', Icons.wb_sunny),
-        _buildSleepRoutineItem('수면 기록 일수', '29일', Icons.calendar_today),
-      ],
-    );
-  }
-
-  Widget _buildSleepRoutineItem(String title, String value, IconData icon) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(icon, size: 16, color: Colors.blue),
-                const SizedBox(width: 4),
-                Text(title,
-                    style: const TextStyle(fontSize: 12, color: Colors.grey)),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Text(value,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          ],
-        ),
-      ),
     );
   }
 

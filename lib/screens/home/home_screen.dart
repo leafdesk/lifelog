@@ -3,8 +3,6 @@ import 'package:lifelog/screens/home/diary/diary_entry_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get.dart';
 import 'package:lifelog/screens/home/home_controller.dart';
-import 'package:lifelog/models/question/question_model.dart';
-import 'package:lifelog/models/answer/answer_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

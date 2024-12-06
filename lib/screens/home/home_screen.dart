@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifelog/screens/home/diary/diary_entry_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get.dart';
 import 'package:lifelog/screens/home/home_controller.dart';
@@ -66,6 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const DiaryEntryScreen());
+        },
+        child: Obx(() {
+          return Icon(
+            _homeController.content.value.isNotEmpty ? Icons.edit : Icons.add,
+          );
+        }),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:lifelog/repositories/diary_repository.dart';
 import 'package:lifelog/utils/data_state.dart';
@@ -42,6 +41,8 @@ class HomeController extends GetxController {
         content.value = entry?.content ?? '';
         emotionScore.value = entry?.emotionScore ?? '';
       } else {
+        content.value = '';
+        emotionScore.value = '';
         LogUtil.i(tag, "loadDiaryData. DataFailed");
       }
     } catch (e) {

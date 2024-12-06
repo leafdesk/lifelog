@@ -89,7 +89,7 @@ abstract class LifeLogApi {
   Future<void> deleteCustomQuestion(@Path('id') int id);
 
   @POST('/api/custom-questions')
-  Future<QuestionModel> createCustomQuestion(
+  Future<CreateQuestionResponse> createCustomQuestion(
       @Body() Map<String, dynamic> question);
 
   @GET('/api/custom-questions/user/{id}')

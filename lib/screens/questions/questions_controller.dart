@@ -10,7 +10,7 @@ class QuestionsController extends GetxController {
   static QuestionsController get to => Get.find();
 
   // 질문 관련 상태 변수들
-  RxList<String> questions = <String>[].obs;
+  RxList<QuestionModel> questions = <QuestionModel>[].obs;
   RxString currentQuestion = ''.obs;
   RxString currentAnswer = ''.obs;
 
@@ -23,26 +23,75 @@ class QuestionsController extends GetxController {
           await CustomQuestionRepository().getCustomQuestionsByUser(userId);
 
       if (result is DataSuccess<List<QuestionModel>>) {
-        questions.value = result.data?.map((q) => q.question).toList() ??
-            []; // Safely access questions
+        questions.value =
+            result.data ?? []; // Directly assign the list of QuestionModel
       } else {
-        LogUtil.e(tag, '질문 데이터 로드 실패: ${result.error}');
+        LogUtil.e(tag, 'loadQuestions. ${result.error}');
         questions.value = []; // Initialize to empty list on error
       }
     } catch (e) {
-      LogUtil.e(tag, '질문 데이터 로드 실패: $e');
+      LogUtil.e(tag, 'loadQuestions. $e');
       questions.value = []; // Initialize to empty list on exception
     }
   }
 
-  // 답변을 저장하는 메서드
-  Future<void> saveAnswer(String question, String answer) async {
+  // 질문을 생성하는 메서드
+  Future<void> createCustomQuestion(
+      String question, String questionType, List<String> options) async {
     try {
-      // TODO: API 연동 시 실제 저장 로직 구현
-      currentQuestion.value = question;
-      currentAnswer.value = answer;
+      final questionData = {
+        "question_text": question,
+        "user_id": 1, // Replace with actual user ID retrieval method
+        "question_type": questionType,
+      };
+
+      if (questionType == '객관식') {
+        questionData['options'] =
+            options; // Add options for multiple choice questions
+      }
+
+      final result =
+          await CustomQuestionRepository().createCustomQuestion(questionData);
+
+      LogUtil.i(tag, 'createCustomQuestion. result: $result');
     } catch (e) {
-      LogUtil.e(tag, '답변 저장 실패: $e');
+      LogUtil.e(tag, 'createCustomQuestion. $e');
+    } finally {
+      await loadQuestions();
+    }
+  }
+
+  Future<void> deleteCustomQuestion(int index) async {
+    try {
+      int questionId = questions[index].id!; // Use the null check operator
+      final result =
+          await CustomQuestionRepository().deleteCustomQuestion(questionId);
+
+      LogUtil.i(tag, 'deleteCustomQuestion. result: $result');
+    } catch (e) {
+      LogUtil.e(tag, 'deleteCustomQuestion. $e');
+    } finally {
+      await loadQuestions();
+    }
+  }
+
+  Future<void> updateCustomQuestion(
+      int index, String updatedText, String questionType) async {
+    try {
+      int questionId =
+          questions[index].id!; // Get the ID of the question to update
+      final questionData = {
+        "question_text": updatedText,
+        "user_id": 1, // 실제 사용자 ID로 대체
+        "question_type": questionType, // (객관식, 주관식)
+      };
+
+      final result = await CustomQuestionRepository()
+          .updateCustomQuestion(questionId, questionData);
+
+      LogUtil.i(tag, 'updateCustomQuestion. result: $result');
+    } catch (e) {
+      LogUtil.e(tag, 'updateCustomQuestion. $e');
     }
   }
 

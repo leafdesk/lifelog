@@ -64,7 +64,7 @@ class HomeController extends GetxController {
       // dailyDiaryEntry.value = response.content;
       // 등등...
     } catch (e) {
-      LogUtil.e(tag, '일기 데이터 로드 실패: $e');
+      LogUtil.e(tag, 'loadDiaryData. $e');
     }
   }
 }

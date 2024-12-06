@@ -29,7 +29,7 @@ class CustomQuestionRepository {
     }
   }
 
-  Future<DataState<QuestionModel>> createCustomQuestion(
+  Future<DataState<CreateQuestionResponse>> createCustomQuestion(
       Map<String, dynamic> question) async {
     try {
       final newQuestion = await _lifeLogApi.createCustomQuestion(question);

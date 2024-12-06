@@ -707,14 +707,14 @@ class _LifeLogApi implements LifeLogApi {
   }
 
   @override
-  Future<QuestionModel> createCustomQuestion(
+  Future<CreateQuestionResponse> createCustomQuestion(
       Map<String, dynamic> question) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(question);
-    final _options = _setStreamType<QuestionModel>(Options(
+    final _options = _setStreamType<CreateQuestionResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -731,9 +731,9 @@ class _LifeLogApi implements LifeLogApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late QuestionModel _value;
+    late CreateQuestionResponse _value;
     try {
-      _value = QuestionModel.fromJson(_result.data!);
+      _value = CreateQuestionResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'question_model.freezed.dart';
 part 'question_model.g.dart';
 
-// 질문 응답 모델.
 @freezed
 class QuestionResponse with _$QuestionResponse {
   const factory QuestionResponse({
@@ -17,8 +16,8 @@ class QuestionResponse with _$QuestionResponse {
 @freezed
 class QuestionModel with _$QuestionModel {
   const factory QuestionModel({
-    required int id,
-    required String question,
+    int? id,
+    String? question,
     String? description,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -26,4 +25,19 @@ class QuestionModel with _$QuestionModel {
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$QuestionModelFromJson(json);
+}
+
+@freezed
+class CreateQuestionResponse with _$CreateQuestionResponse {
+  const factory CreateQuestionResponse({
+    required int questionId,
+    required String questionText,
+    required int userId,
+    required String questionType,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+  }) = _CreateQuestionResponse;
+
+  factory CreateQuestionResponse.fromJson(Map<String, dynamic> json) =>
+      _$CreateQuestionResponseFromJson(json);
 }

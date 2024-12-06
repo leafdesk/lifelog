@@ -166,8 +166,8 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$QuestionModel {
-  int get id => throw _privateConstructorUsedError;
-  String get question => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get question => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -185,8 +185,8 @@ abstract class $QuestionModelCopyWith<$Res> {
       _$QuestionModelCopyWithImpl<$Res, QuestionModel>;
   @useResult
   $Res call(
-      {int id,
-      String question,
+      {int? id,
+      String? question,
       String? description,
       DateTime? createdAt,
       DateTime? updatedAt});
@@ -205,21 +205,21 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? question = null,
+    Object? id = freezed,
+    Object? question = freezed,
     Object? description = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      question: null == question
+              as int?,
+      question: freezed == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -245,8 +245,8 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String question,
+      {int? id,
+      String? question,
       String? description,
       DateTime? createdAt,
       DateTime? updatedAt});
@@ -263,21 +263,21 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? question = null,
+    Object? id = freezed,
+    Object? question = freezed,
     Object? description = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$QuestionModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      question: null == question
+              as int?,
+      question: freezed == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -298,8 +298,8 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QuestionModelImpl implements _QuestionModel {
   const _$QuestionModelImpl(
-      {required this.id,
-      required this.question,
+      {this.id,
+      this.question,
       this.description,
       this.createdAt,
       this.updatedAt});
@@ -308,9 +308,9 @@ class _$QuestionModelImpl implements _QuestionModel {
       _$$QuestionModelImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String question;
+  final String? question;
   @override
   final String? description;
   @override
@@ -360,8 +360,8 @@ class _$QuestionModelImpl implements _QuestionModel {
 
 abstract class _QuestionModel implements QuestionModel {
   const factory _QuestionModel(
-      {required final int id,
-      required final String question,
+      {final int? id,
+      final String? question,
       final String? description,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$QuestionModelImpl;
@@ -370,9 +370,9 @@ abstract class _QuestionModel implements QuestionModel {
       _$QuestionModelImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get question;
+  String? get question;
   @override
   String? get description;
   @override
@@ -383,4 +383,256 @@ abstract class _QuestionModel implements QuestionModel {
   @JsonKey(ignore: true)
   _$$QuestionModelImplCopyWith<_$QuestionModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+CreateQuestionResponse _$CreateQuestionResponseFromJson(
+    Map<String, dynamic> json) {
+  return _CreateQuestionResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CreateQuestionResponse {
+  int get questionId => throw _privateConstructorUsedError;
+  String get questionText => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+  String get questionType => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateQuestionResponseCopyWith<CreateQuestionResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateQuestionResponseCopyWith<$Res> {
+  factory $CreateQuestionResponseCopyWith(CreateQuestionResponse value,
+          $Res Function(CreateQuestionResponse) then) =
+      _$CreateQuestionResponseCopyWithImpl<$Res, CreateQuestionResponse>;
+  @useResult
+  $Res call(
+      {int questionId,
+      String questionText,
+      int userId,
+      String questionType,
+      DateTime createdAt,
+      DateTime updatedAt});
+}
+
+/// @nodoc
+class _$CreateQuestionResponseCopyWithImpl<$Res,
+        $Val extends CreateQuestionResponse>
+    implements $CreateQuestionResponseCopyWith<$Res> {
+  _$CreateQuestionResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questionId = null,
+    Object? questionText = null,
+    Object? userId = null,
+    Object? questionType = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+  }) {
+    return _then(_value.copyWith(
+      questionId: null == questionId
+          ? _value.questionId
+          : questionId // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionText: null == questionText
+          ? _value.questionText
+          : questionText // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionType: null == questionType
+          ? _value.questionType
+          : questionType // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CreateQuestionResponseImplCopyWith<$Res>
+    implements $CreateQuestionResponseCopyWith<$Res> {
+  factory _$$CreateQuestionResponseImplCopyWith(
+          _$CreateQuestionResponseImpl value,
+          $Res Function(_$CreateQuestionResponseImpl) then) =
+      __$$CreateQuestionResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int questionId,
+      String questionText,
+      int userId,
+      String questionType,
+      DateTime createdAt,
+      DateTime updatedAt});
+}
+
+/// @nodoc
+class __$$CreateQuestionResponseImplCopyWithImpl<$Res>
+    extends _$CreateQuestionResponseCopyWithImpl<$Res,
+        _$CreateQuestionResponseImpl>
+    implements _$$CreateQuestionResponseImplCopyWith<$Res> {
+  __$$CreateQuestionResponseImplCopyWithImpl(
+      _$CreateQuestionResponseImpl _value,
+      $Res Function(_$CreateQuestionResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questionId = null,
+    Object? questionText = null,
+    Object? userId = null,
+    Object? questionType = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+  }) {
+    return _then(_$CreateQuestionResponseImpl(
+      questionId: null == questionId
+          ? _value.questionId
+          : questionId // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionText: null == questionText
+          ? _value.questionText
+          : questionText // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionType: null == questionType
+          ? _value.questionType
+          : questionType // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CreateQuestionResponseImpl implements _CreateQuestionResponse {
+  const _$CreateQuestionResponseImpl(
+      {required this.questionId,
+      required this.questionText,
+      required this.userId,
+      required this.questionType,
+      required this.createdAt,
+      required this.updatedAt});
+
+  factory _$CreateQuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateQuestionResponseImplFromJson(json);
+
+  @override
+  final int questionId;
+  @override
+  final String questionText;
+  @override
+  final int userId;
+  @override
+  final String questionType;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+
+  @override
+  String toString() {
+    return 'CreateQuestionResponse(questionId: $questionId, questionText: $questionText, userId: $userId, questionType: $questionType, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateQuestionResponseImpl &&
+            (identical(other.questionId, questionId) ||
+                other.questionId == questionId) &&
+            (identical(other.questionText, questionText) ||
+                other.questionText == questionText) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.questionType, questionType) ||
+                other.questionType == questionType) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, questionId, questionText, userId,
+      questionType, createdAt, updatedAt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateQuestionResponseImplCopyWith<_$CreateQuestionResponseImpl>
+      get copyWith => __$$CreateQuestionResponseImplCopyWithImpl<
+          _$CreateQuestionResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CreateQuestionResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CreateQuestionResponse implements CreateQuestionResponse {
+  const factory _CreateQuestionResponse(
+      {required final int questionId,
+      required final String questionText,
+      required final int userId,
+      required final String questionType,
+      required final DateTime createdAt,
+      required final DateTime updatedAt}) = _$CreateQuestionResponseImpl;
+
+  factory _CreateQuestionResponse.fromJson(Map<String, dynamic> json) =
+      _$CreateQuestionResponseImpl.fromJson;
+
+  @override
+  int get questionId;
+  @override
+  String get questionText;
+  @override
+  int get userId;
+  @override
+  String get questionType;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime get updatedAt;
+  @override
+  @JsonKey(ignore: true)
+  _$$CreateQuestionResponseImplCopyWith<_$CreateQuestionResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

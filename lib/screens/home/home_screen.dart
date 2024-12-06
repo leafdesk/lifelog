@@ -70,7 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(() => const DiaryEntryScreen());
+          Get.to(() => DiaryEntryScreen(
+              selectedDate: _homeController.selectedDay.value));
         },
         child: Obx(() {
           return Icon(

@@ -43,7 +43,7 @@ class HomeController extends GetxController {
       } else {
         content.value = '';
         emotionScore.value = '';
-        LogUtil.i(tag, "loadDiaryData. DataFailed");
+        LogUtil.i(tag, "loadDiaryData. No Content");
       }
     } catch (e) {
       LogUtil.e(tag, "loadDiaryData. Exception: $e");

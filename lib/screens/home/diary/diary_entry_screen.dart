@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lifelog/screens/home/home_controller.dart';
 import 'package:lifelog/screens/home/diary/diary_entry_controller.dart';
-import 'package:lifelog/repositories/answer_repository.dart';
-import 'package:lifelog/utils/data_state.dart';
 
 class DiaryEntryScreen extends StatefulWidget {
-  const DiaryEntryScreen({super.key});
+  final DateTime selectedDate;
+
+  const DiaryEntryScreen({super.key, required this.selectedDate});
 
   @override
   State<DiaryEntryScreen> createState() => _DiaryEntryScreenState();
 }
 
 class _DiaryEntryScreenState extends State<DiaryEntryScreen> {
-  final HomeController _homeController = Get.find();
   final DiaryEntryController _diaryEntryController =
       Get.put(DiaryEntryController());
   final TextEditingController _diaryContentController = TextEditingController();
@@ -22,7 +20,6 @@ class _DiaryEntryScreenState extends State<DiaryEntryScreen> {
   @override
   void initState() {
     super.initState();
-    // 질문 로드
     _diaryEntryController.loadQuestions();
   }
 
@@ -57,20 +54,30 @@ class _DiaryEntryScreenState extends State<DiaryEntryScreen> {
               }),
             ),
             const SizedBox(height: 20),
-            const Text('질문 선택:'),
+            const Text('질문 목록:'),
             Obx(() {
-              return DropdownButton<int>(
-                hint: const Text('질문을 선택하세요'),
-                items: _diaryEntryController.questions.map((question) {
-                  return DropdownMenuItem<int>(
-                    value: question.id,
-                    child: Text(question.question ?? ''),
+              return Column(
+                children: _diaryEntryController.questions.map((question) {
+                  int questionIndex =
+                      _diaryEntryController.questions.indexOf(question);
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(question.question ?? ''),
+                      TextField(
+                        onChanged: (value) {
+                          _diaryEntryController.answers[questionIndex] =
+                              value; // Update the answer
+                        },
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: '답변을 입력하세요...',
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
                   );
                 }).toList(),
-                onChanged: (value) {
-                  _diaryEntryController.currentQuestion.value =
-                      value.toString();
-                },
               );
             }),
             const SizedBox(height: 20),
@@ -88,26 +95,12 @@ class _DiaryEntryScreenState extends State<DiaryEntryScreen> {
               onPressed: () async {
                 if (_selectedEmotionScore != null &&
                     _diaryContentController.text.isNotEmpty) {
-                  // 일기 등록 API 호출
-                  final diaryEntry = {
-                    'emotion_score': _selectedEmotionScore,
-                    'content': _diaryContentController.text,
-                  };
-                  final result = await _homeController.diaryRepository
-                      .createDiaryEntry(diaryEntry);
-
-                  if (result is DataSuccess) {
-                    // 질문에 대한 답변 등록
-                    final answer = {
-                      'question_id': _diaryEntryController
-                          .currentQuestion.value, // 선택된 질문 ID
-                      'answer_text': _diaryContentController.text,
-                    };
-                    await AnswerRepository().createAnswer(answer);
-                    Get.back(); // 이전 페이지로 돌아가기
-                  } else {
-                    // 에러 처리
-                  }
+                  await _diaryEntryController.submitDiaryEntry(
+                    _selectedEmotionScore,
+                    _diaryContentController.text,
+                    widget.selectedDate,
+                  );
+                  Get.back(); // 이전 페이지로 돌아가기
                 }
               },
               child: const Text('작성 완료'),

@@ -66,8 +66,9 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                   if (newValue != null) {
                     int monthValue = int.parse(newValue.split('월')[0]);
                     _statisticsController.selectedMonth.value = monthValue;
-                    _statisticsController
-                        .fetchStatistics(); // 월 변경 시 통계 데이터 재요청
+                    _statisticsController.fetchStatistics().then((_) {
+                      setState(() {}); // UI 업데이트
+                    });
                   }
                 },
               );
@@ -113,59 +114,50 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
 
           const SizedBox(height: 24),
 
-          // 막대 그래프
+          // 원형 그래프
           SizedBox(
             height: 200,
-            child: BarChart(
-              BarChartData(
-                alignment: BarChartAlignment.spaceAround,
-                maxY: 30,
-                barGroups: [
-                  _buildBarGroup(
-                      0,
-                      double.parse(_statisticsController.statisticsData[5] ??
-                          '0')), // 행복
-                  _buildBarGroup(
-                      1,
-                      double.parse(_statisticsController.statisticsData[4] ??
-                          '0')), // 즐거움
-                  _buildBarGroup(
-                      2,
-                      double.parse(_statisticsController.statisticsData[3] ??
-                          '0')), // 보통
-                  _buildBarGroup(
-                      3,
-                      double.parse(_statisticsController.statisticsData[2] ??
-                          '0')), // 슬픔
-                  _buildBarGroup(
-                      4,
-                      double.parse(_statisticsController.statisticsData[1] ??
-                          '0')), // 화남
+            child: PieChart(
+              PieChartData(
+                sections: [
+                  PieChartSectionData(
+                    value: double.parse(_statisticsController.statisticsData[5]
+                            ?.replaceAll('%', '') ??
+                        '0'),
+                    title: '행복',
+                    color: Colors.green,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(_statisticsController.statisticsData[4]
+                            ?.replaceAll('%', '') ??
+                        '0'),
+                    title: '즐거움',
+                    color: Colors.blue,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(_statisticsController.statisticsData[3]
+                            ?.replaceAll('%', '') ??
+                        '0'),
+                    title: '보통',
+                    color: Colors.yellow,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(_statisticsController.statisticsData[2]
+                            ?.replaceAll('%', '') ??
+                        '0'),
+                    title: '슬픔',
+                    color: Colors.orange,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(_statisticsController.statisticsData[1]
+                            ?.replaceAll('%', '') ??
+                        '0'),
+                    title: '화남',
+                    color: Colors.red,
+                  ),
                 ],
-                titlesData: FlTitlesData(
-                  show: true,
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: getTitles,
-                      reservedSize: 38,
-                    ),
-                  ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 30,
-                    ),
-                  ),
-                  topTitles: const AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  rightTitles: const AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                ),
                 borderData: FlBorderData(show: false),
-                gridData: const FlGridData(show: false),
+                centerSpaceRadius: 40,
               ),
             ),
           ),
@@ -183,54 +175,6 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
         const SizedBox(height: 4),
         Text(percentage),
       ],
-    );
-  }
-
-  BarChartGroupData _buildBarGroup(int x, double value) {
-    return BarChartGroupData(
-      x: x,
-      barRods: [
-        BarChartRodData(
-          toY: value,
-          color: Colors.teal,
-          width: 20,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
-        ),
-      ],
-    );
-  }
-
-  Widget getTitles(double value, TitleMeta meta) {
-    const style = TextStyle(
-      color: Colors.grey,
-      fontWeight: FontWeight.bold,
-      fontSize: 14,
-    );
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = '행복';
-        break;
-      case 1:
-        text = '즐거움';
-        break;
-      case 2:
-        text = '보통';
-        break;
-      case 3:
-        text = '슬픔';
-        break;
-      case 4:
-        text = '화남';
-        break;
-      default:
-        text = '';
-        break;
-    }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 4,
-      child: Text(text, style: style),
     );
   }
 }

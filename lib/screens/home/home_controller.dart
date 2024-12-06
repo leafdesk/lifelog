@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:lifelog/models/user/user_model.dart';
 import 'package:lifelog/repositories/user_repository.dart';
 import 'package:lifelog/utils/data_state.dart';
-import 'package:flutter/material.dart';
 import 'package:lifelog/utils/log_util.dart';
 
 class HomeController extends GetxController {

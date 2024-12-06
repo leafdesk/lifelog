@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lifelog/screens/questions/questions_controller.dart';
-import 'package:lifelog/models/question/question_model.dart'; // Adjust the path as necessary
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -35,6 +34,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   }
 
   void _showAddQuestionDialog() {
+    _textController.clear(); // 다이얼로그를 열기 전에 텍스트 필드를 비웁니다.
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -54,7 +54,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  _textController.clear(); // 취소 시에도 텍스트 필드를 비웁니다.
+                  Navigator.pop(context);
+                },
                 child: const Text('취소'),
               ),
               TextButton(
@@ -100,7 +103,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  _textController.clear(); // 취소 시에도 텍스트 필드를 비웁니다.
+                  Navigator.pop(context);
+                },
                 child: const Text('취소'),
               ),
               TextButton(
@@ -185,8 +191,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     if (oldIndex < newIndex) {
                       newIndex -= 1;
                     }
-                    final item =
-                        _questionsController.questions.removeAt(oldIndex);
+
+                    // RxList에서 직접 순서 변경
+                    final item = _questionsController.questions[oldIndex];
+                    _questionsController.questions.removeAt(oldIndex);
                     _questionsController.questions.insert(newIndex, item);
                   },
                   itemBuilder: (context, index) {
@@ -198,8 +206,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       ),
                       title: Row(
                         children: [
+                          // 인덱스 번호 표시
                           Text(
-                            '${index + 1}. ',
+                            '${index + 1}. ', // 1부터 시작하는 인덱스 표시
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -217,9 +226,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () => _showEditQuestionDialog(
-                                index,
-                                _questionsController
-                                    .questions[index].question!),
+                              index,
+                              _questionsController.questions[index].question!,
+                            ),
                           ),
                           IconButton(
                             icon: const Icon(Icons.delete),

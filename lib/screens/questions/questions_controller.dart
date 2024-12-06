@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lifelog/models/question/question_model.dart';
 import 'package:lifelog/utils/data_state.dart';
@@ -23,15 +22,15 @@ class QuestionsController extends GetxController {
           await CustomQuestionRepository().getCustomQuestionsByUser(userId);
 
       if (result is DataSuccess<List<QuestionModel>>) {
-        questions.value =
-            result.data ?? []; // Directly assign the list of QuestionModel
+        questions.assignAll(
+            result.data ?? []); // Directly assign the list of QuestionModel
       } else {
         LogUtil.e(tag, 'loadQuestions. ${result.error}');
-        questions.value = []; // Initialize to empty list on error
+        questions.assignAll([]); // Initialize to empty list on error
       }
     } catch (e) {
       LogUtil.e(tag, 'loadQuestions. $e');
-      questions.value = []; // Initialize to empty list on exception
+      questions.assignAll([]); // Initialize to empty list on exception
     }
   }
 

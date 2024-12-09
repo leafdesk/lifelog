@@ -33,7 +33,7 @@ class MainPage extends StatelessWidget {
     const HomeScreen(),
     const QuestionsScreen(),
     const StatisticsScreen(),
-    const SettingsScreen(),
+    // const SettingsScreen(),
   ];
 
   @override
@@ -63,10 +63,10 @@ class MainPage extends StatelessWidget {
               icon: Icon(Icons.auto_graph),
               label: '통계',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: '설정',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.settings),
+            //   label: '설정',
+            // ),
           ],
           currentIndex: controller.currentIndex.value,
           selectedItemColor: Colors.blue,

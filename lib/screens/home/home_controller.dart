@@ -34,6 +34,8 @@ class HomeController extends GetxController {
   /// return: void
   void updateSelectedDay(DateTime day) {
     selectedDay.value = day;
+    questions.clear(); // Clear questions
+    answers.clear(); // Clear answers
     loadDiaryData(day, 1); // 예시로 userId를 1로 설정
   }
 
@@ -67,6 +69,8 @@ class HomeController extends GetxController {
       } else {
         content.value = '';
         emotionScore.value = '';
+        questions.clear(); // Clear questions if no content
+        answers.clear(); // Clear answers if no content
         LogUtil.i(tag, "loadDiaryData. No Content");
       }
     } catch (e) {
